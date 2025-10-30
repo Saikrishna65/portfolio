@@ -1,26 +1,57 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+body {
+  overflow-x: hidden;
+  scrollbar-width: none;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+html::-webkit-scrollbar,
+body::-webkit-scrollbar {
+  display: none;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+@font-face {
+  font-family: "mons";
+  src: url("/font/Mons.ttf") format("truetype");
+  /* font-weight: 400; */
+  /* font-style: normal; */
+}
+@font-face {
+  font-family: "impact";
+  src: url("/font/Impact.ttf") format("truetype");
+  /* font-weight: 400; */
+  /* font-style: normal; */
+}
+@font-face {
+  font-family: "bebas";
+  src: url("/font/Bebas.ttf") format("truetype");
+  /* font-weight: 400; */
+  /* font-style: normal; */
+}
+@font-face {
+  font-family: "space";
+  src: url("/font/space.ttf") format("truetype");
+  /* font-weight: 400; */
+  /* font-style: normal; */
+}
+@font-face {
+  font-family: "outfit";
+  src: url("/font/outfit.ttf") format("truetype");
+  /* font-weight: 400; */
+  /* font-style: normal; */
+}
+
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+.marquee-track {
+  display: flex;
+  animation: marquee linear infinite;
+  will-change: transform;
 }
