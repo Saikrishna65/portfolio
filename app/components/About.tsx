@@ -3,7 +3,10 @@ import FadeInFromBottom from "./FadeInFromBottom";
 
 const About = () => {
   return (
-    <div className="relative w-full h-[70vh] md:h-screen bg-black flex flex-col items-center justify-center px-3 md:px-25">
+    <section
+      id="about"
+      className="relative w-full h-[70vh] md:h-screen bg-black flex flex-col items-center justify-center px-3 md:px-25"
+    >
       <div className="absolute left-10 top-10 md:left-30 md:top-10 text-white text-3xl md:text-5xl font-[space] font-semibold">
         <FadeInFromBottom>About</FadeInFromBottom>
       </div>
@@ -19,7 +22,7 @@ const About = () => {
           I love turning ideas into impactful digital products.
         </div>
       </FadeInFromBottom>
-    </div>
+    </section>
   );
 };
 
