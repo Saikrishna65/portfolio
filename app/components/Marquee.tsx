@@ -49,7 +49,7 @@ const Marquee: React.FC<MarqueeProps> = ({
         )}
         style={{ animationDuration: `${duration}s` }}
       >
-        {[...Array(2)].map((_, idx) =>
+        {[...Array(3)].map((_, idx) =>
           phrases.map((item, i) => {
             const isString = typeof item === "string";
             return (

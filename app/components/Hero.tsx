@@ -4,6 +4,7 @@ import gsap from "gsap";
 import ResumeButtons from "./ResumeButtons";
 import FadeInFromBottom from "./FadeInFromBottom";
 import ParallaxSection from "./ParallaxSection";
+import CenterRevealText from "./CenterRevealText";
 
 const randomHTMLSnippets = [
   `<div class='intro-box'>
@@ -108,27 +109,30 @@ const Hero: React.FC = () => {
   }, []);
 
   return (
-    <div className="relative w-full h-[50vh] md:h-screen overflow-hidden bg-black">
+    <section
+      id="home"
+      className="relative w-full h-[60vh] md:h-screen overflow-hidden bg-black"
+    >
       <div
         ref={gridRef}
         className="absolute grid grid-cols-3 md:grid-cols-5 w-full h-full pointer-events-none"
         style={{
           maskImage: `radial-gradient(
-            circle ${radius + fade}px at var(--x, -999px) var(--y, -999px),
-            black 0%,
-            black ${radius}px,
-            rgba(0,0,0,0.6) ${radius + fade * 0.3}px,
-            rgba(0,0,0,0.3) ${radius + fade * 0.7}px,
-            transparent ${radius + fade}px
-          )`,
+          circle ${radius + fade}px at var(--x, -999px) var(--y, -999px),
+          black 0%,
+          black ${radius}px,
+          rgba(0,0,0,0.6) ${radius + fade * 0.3}px,
+          rgba(0,0,0,0.3) ${radius + fade * 0.7}px,
+          transparent ${radius + fade}px
+        )`,
           WebkitMaskImage: `radial-gradient(
-            circle ${radius + fade}px at var(--x, -999px) var(--y, -999px),
-            black 0%,
-            black ${radius}px,
-            rgba(0,0,0,0.6) ${radius + fade * 0.3}px,
-            rgba(0,0,0,0.3) ${radius + fade * 0.7}px,
-            transparent ${radius + fade}px
-          )`,
+          circle ${radius + fade}px at var(--x, -999px) var(--y, -999px),
+          black 0%,
+          black ${radius}px,
+          rgba(0,0,0,0.6) ${radius + fade * 0.3}px,
+          rgba(0,0,0,0.3) ${radius + fade * 0.7}px,
+          transparent ${radius + fade}px
+        )`,
           maskRepeat: "no-repeat",
           WebkitMaskRepeat: "no-repeat",
           transition: "mask-image 0.3s ease-out",
@@ -137,10 +141,10 @@ const Hero: React.FC = () => {
         {[...Array(20)].map((_, i) => (
           <div
             key={i}
-            className="border border-[#656565] flex items-center justify-center p-4 overflow-hidden"
+            className="border border-[#656565] flex items-center justify-center p-2 sm:p-3 md:p-4 overflow-hidden"
           >
             <pre
-              className="text-xs leading-relaxed text-[#656565] font-mono whitespace-pre-wrap"
+              className="text-[clamp(7px,1vw,12px)] leading-relaxed text-[#656565] font-mono whitespace-pre-wrap"
               dangerouslySetInnerHTML={{
                 __html: formatHTML(getRandomSnippet()).replace(
                   /(&lt;\/?\w+.*?&gt;)/g,
@@ -152,48 +156,61 @@ const Hero: React.FC = () => {
         ))}
       </div>
 
-      <div className="relative w-full h-[50vh] md:h-full px-5 md:px-10 pt-5">
-        <div className="absolute z-10">
-          <FadeInFromBottom>
-            <ParallaxSection speed={-0.1}>
-              <h1 className="text-white text-5xl md:text-9xl font-[space]">
-                I AM
-              </h1>
-            </ParallaxSection>
-            <ParallaxSection speed={0.2}>
-              <h1 className="text-white text-5xl md:text-9xl font-[space]">
-                SAI KRISHNA
-              </h1>
-            </ParallaxSection>
-          </FadeInFromBottom>
+      <div className="relative w-full h-full px-4 sm:px-6 md:px-10 pt-10 md:pt-5">
+        <div className="absolute z-10 text-white text-[clamp(3rem,10vw,10rem)] leading-none font-[space]">
+          {/* <FadeInFromBottom delay={1}> */}
+          <ParallaxSection speed={-0.1}>
+            <CenterRevealText text="I AM" delay={1} />
+          </ParallaxSection>
+
+          <ParallaxSection speed={0.2}>
+            <CenterRevealText text="SAI KRISHNA" delay={1} />
+          </ParallaxSection>
+          {/* </FadeInFromBottom> */}
         </div>
 
-        <div className="absolute bottom-0 right-5 md:right-10 z-10">
-          <FadeInFromBottom delay={0.4}>
-            <ParallaxSection speed={-0.1}>
-              <h1 className="text-white text-5xl md:text-9xl font-[space]">
+        {/* RIGHT BOTTOM TITLE */}
+        <div className="absolute bottom-0 right-4 sm:right-6 md:right-10 z-10">
+          {/* <FadeInFromBottom delay={1.3}> */}
+          <ParallaxSection speed={-0.1}>
+            {/* <h1 className="text-white text-[clamp(3rem,10vw,10rem)] leading-none font-[space]">
                 FULL STACK
-              </h1>
-              <p className="text-white text-2xl font-[space] text-end">
-                DEVELOPER
-              </p>
-            </ParallaxSection>
-          </FadeInFromBottom>
+              </h1> */}
+            <CenterRevealText
+              text="FULL STACK"
+              delay={1}
+              className="text-white text-[clamp(3rem,10vw,10rem)] leading-none font-[space]"
+            />
+          </ParallaxSection>
+          <ParallaxSection speed={0.1}>
+            <p className="text-white text-[clamp(1rem,5vw,2rem)] leading-none font-[space] text-end">
+              DEVELOPER
+            </p>
+            {/* <CenterRevealText
+              text="DEVELOPER"
+              className="text-white text-[clamp(1rem,5vw,2rem)] leading-none font-[space] text-end"
+            /> */}
+          </ParallaxSection>
+          {/* </FadeInFromBottom> */}
         </div>
 
-        <div className="absolute bottom-10 w-[25vw]">
-          <FadeInFromBottom delay={0.7}>
-            <div className="text-white py-2 px-5 font-[space]">
-              I DESIGN AND DEVELOP WEBSITES FOR PEOPLE AND HELP BRING THEIR
-              IDEAS TO LIFE.
-            </div>
-            <div>
-              <ResumeButtons />
-            </div>
-          </FadeInFromBottom>
+        {/* CENTER BOTTOM DESCRIPTION TEXT */}
+        <div className="absolute bottom-20 md:bottom-10 w-[80vw] sm:w-[60vw] md:w-[30vw] lg:w-[25vw]">
+          {/* <FadeInFromBottom delay={1.5}> */}
+          <ParallaxSection speed={0.15}>
+            {/* <div className="text-white font-[space] text-[clamp(1rem,2vw,1.5rem)] leading-[1.2]">
+              Pixel-perfect websites — flawless even on your ex’s phone.
+            </div> */}
+            <CenterRevealText
+              delay={1}
+              className="text-white font-[space] text-[clamp(1rem,2vw,1.5rem)] leading-[1.2]"
+              text="Pixel-perfect websites — flawless even on your ex’s phone."
+            />
+          </ParallaxSection>
+          {/* </FadeInFromBottom> */}
         </div>
       </div>
-    </div>
+    </section>
   );
 };
 

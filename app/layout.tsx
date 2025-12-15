@@ -1,10 +1,9 @@
-import type { Metadata } from "next";
-import "./globals.css";
 import TransitionProvider from "./components/TransitionProvider";
+import "./globals.css";
 
-export const metadata: Metadata = {
-  title: "Sai Portfolio",
-  description: "Personal portfolio by Sai Krishna",
+export const metadata = {
+  title: "Sai Krishna",
+  description: "Sai Krishna",
 };
 
 export default function RootLayout({
@@ -15,6 +14,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
+        {/* TransitionProvider handles loader + page transitions */}
         <TransitionProvider>{children}</TransitionProvider>
       </body>
     </html>

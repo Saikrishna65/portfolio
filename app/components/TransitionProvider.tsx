@@ -1,8 +1,9 @@
 "use client";
 
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useRouter, usePathname } from "next/navigation";
 import PageTransition from "./PageTransition";
+import Loader from "./Loader";
 
 export default function TransitionProvider({
   children,
@@ -18,29 +19,43 @@ export default function TransitionProvider({
   }>(null);
 
   const isTransitioning = useRef(false);
-  const isFirstLoad = useRef(true);
+  const [showLoader, setShowLoader] = useState(true);
+  const [isFirstLoad, setIsFirstLoad] = useState(true);
 
-  // 🚀 Custom navigation handler (handles normal and hash links)
+  // ------------------------------
+  // 🧭 First visit loader logic
+  // ------------------------------
+  const handleLoaderComplete = async () => {
+    // 1️⃣ Loader reaches 100% → immediately start close animation
+    if (transitionRef.current) {
+      await transitionRef.current.closeAnimation(); // Close transition happens over loader
+    }
+
+    // 2️⃣ Once closed, hide loader and open home page
+    setShowLoader(false);
+    setIsFirstLoad(false);
+
+    // 3️⃣ Instantly open the transition to reveal the page
+    setTimeout(() => {
+      transitionRef.current?.openAnimation();
+    }, 100); // slight delay for cinematic timing
+  };
+
   const handleNavigation = async (url: string, hash?: string) => {
     if (isTransitioning.current || !transitionRef.current) return;
     isTransitioning.current = true;
 
     await transitionRef.current.closeAnimation();
 
-    // Navigate (internal routing or hash jump)
     if (hash) {
-      // keep same page path
       window.history.pushState(null, "", `${pathname}${hash}`);
-      // wait a bit for DOM update
       await new Promise((res) => setTimeout(res, 100));
     } else {
       router.push(url);
     }
 
-    // reveal
     transitionRef.current.openAnimation();
 
-    // scroll to hash target if any
     if (hash) {
       const el = document.querySelector(hash);
       if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
@@ -49,61 +64,53 @@ export default function TransitionProvider({
     isTransitioning.current = false;
   };
 
-  // 🕒 Handle route changes (skip on first load)
+  // ------------------------------
+  // 🕓 Handle route changes (open animation on nav)
+  // ------------------------------
   useEffect(() => {
+    if (isFirstLoad || !transitionRef.current) return;
     const animateOnRouteChange = async () => {
-      if (!transitionRef.current) return;
-
       await new Promise((res) => setTimeout(res, 100));
-
-      if (isFirstLoad.current) {
-        // ❌ Skip transition animation for initial page load
-        isFirstLoad.current = false;
-        return;
-      }
-
-      // ✅ Play reveal only for route changes
-      transitionRef.current.openAnimation();
+      transitionRef.current?.openAnimation();
       isTransitioning.current = false;
     };
-
     animateOnRouteChange();
   }, [pathname]);
 
+  // ------------------------------
+  // Render
+  // ------------------------------
   return (
     <>
       <PageTransition ref={transitionRef} />
 
-      {/* Intercept all <a> clicks (including #hash) */}
-      <div
-        onClick={(e) => {
-          const target = e.target as HTMLElement;
-          const link = target.closest("a");
+      {showLoader ? (
+        <Loader onComplete={handleLoaderComplete} />
+      ) : (
+        <div
+          onClick={(e) => {
+            const target = e.target as HTMLElement;
+            const link = target.closest("a");
 
-          if (link && link.href && !link.target) {
-            const url = new URL(link.href);
-            const current = window.location;
+            if (link && link.href && !link.target) {
+              const url = new URL(link.href);
+              const current = window.location;
+              const isInternal = url.origin === current.origin;
 
-            const isInternal = url.origin === current.origin;
+              if (isInternal) {
+                e.preventDefault();
+                const hash = url.hash || "";
+                const isSamePage = url.pathname === current.pathname;
 
-            if (isInternal) {
-              e.preventDefault();
-
-              const hash = url.hash || "";
-              const isSamePage = url.pathname === current.pathname;
-
-              // ✅ Same page with #hash (about, contact, etc.)
-              if (isSamePage) {
-                handleNavigation(url.pathname, hash);
-              } else {
-                handleNavigation(url.pathname);
+                if (isSamePage) handleNavigation(url.pathname, hash);
+                else handleNavigation(url.pathname);
               }
             }
-          }
-        }}
-      >
-        {children}
-      </div>
+          }}
+        >
+          {children}
+        </div>
+      )}
     </>
   );
 }
