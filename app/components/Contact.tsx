@@ -128,23 +128,23 @@ const Contact = () => {
         </div>
       </div>
       {secondLayer && (
-        <div className="absolute top-0 z-10 bg-white w-full h-full px-5 md:px-10 py-10">
+        <div className="absolute top-0 z-10 bg-white w-full h-full px-5 md:px-10 py-[clamp(1rem,3vw,3rem)]">
           <div className="w-full h-[50%] md:flex">
             <div className="md:w-[50%]">
               <CenterRevealText
                 text="Slide into my inbox. It’s well-designed."
-                className="text-[clamp(3rem,6vw,8rem)] leading-[1.1] font-semibold tracking-wide [word-spacing:0.3rem] font-[impact]"
+                className="text-[clamp(2rem,6vh,8rem)] lg:text-[clamp(3rem,6vw,5rem)] leading-[1.1] font-semibold tracking-wide [word-spacing:0.3rem] font-[impact]"
               />
               <CenterRevealText
                 text="Working hard, wherever Wi-Fi takes me."
-                className="text-[clamp(1.2rem,2vw,2rem)] font-[space] font-semibold"
+                className="text-[clamp(1rem,2vh,2rem)] md:text-[clamp(0.5rem,3vw,1.5rem)] font-[space] font-semibold"
               />
             </div>
-            <div className="md:w-[50%] pt-15 flex flex-col items-center justify-center">
+            <div className="md:w-[50%] pt-[clamp(1rem,7vh,10rem)] flex flex-col items-center justify-center">
               <div className="flex items-center gap-2 w-fit select-none">
                 <CenterRevealText
                   text={email}
-                  className="text-gray-800 bg-gray-100 rounded-lg px-4 py-2 font-[mons]"
+                  className="text-gray-800 bg-gray-100 text-[clamp(0.8rem,3vw,1rem)] rounded-lg px-4 py-2 font-[mons]"
                 />
 
                 <button
@@ -158,15 +158,15 @@ const Contact = () => {
                   )}
                 </button>
               </div>
-              <div className="flex gap-3 mt-4">
+              <div className="flex gap-1 mt-4">
                 <CenterRevealText
                   text="Local time"
-                  className="text-[clamp(1rem,2vw,1rem)] font-[mons]"
+                  className="text-[clamp(0.9rem,2vw,1rem)] font-[mons]"
                 />
 
                 <CenterRevealText
                   text={time}
-                  className="text-[clamp(1rem,2vw,1rem)] font-[mons]"
+                  className="text-[clamp(0.9rem,2vw,1rem)] font-[mons]"
                 />
               </div>
             </div>
@@ -176,13 +176,13 @@ const Contact = () => {
               <a href="https://www.linkedin.com/in/saikrishnamangina/">
                 <CenterRevealText
                   text="LinkedIn"
-                  className="text-[clamp(1rem,2vw,1.5rem)] font-[mons]"
+                  className="text-[clamp(0.9rem,2vw,1.5rem)] font-[mons]"
                 />
               </a>
               <a href="https://github.com/Saikrishna65">
                 <CenterRevealText
                   text="GitHub"
-                  className="text-[clamp(1rem,2vw,1.5rem)] font-[mons]"
+                  className="text-[clamp(0.9rem,2vw,1.5rem)] font-[mons]"
                 />
               </a>
             </div>
@@ -190,7 +190,7 @@ const Contact = () => {
               <Copyright className="w-4 h-4 md:w-6 md:h-6" />
               <CenterRevealText
                 text="2025 Sai Krishna. All rights reserved… probably."
-                className="text-[clamp(0.8rem,2vw,1rem)] font-[mons]"
+                className="text-[clamp(0.5rem,3vw,1rem)] font-[mons]"
                 noScroll
               />
             </div>

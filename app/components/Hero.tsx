@@ -156,8 +156,8 @@ const Hero: React.FC = () => {
         ))}
       </div>
 
-      <div className="relative w-full h-full px-4 sm:px-6 md:px-10 pt-10 md:pt-5">
-        <div className="absolute z-10 text-white text-[clamp(3rem,10vw,10rem)] leading-none font-[space]">
+      <div className="relative w-full h-full px-4 sm:px-6 md:px-10 p-4 md:p-5">
+        <div className="absolute z-10 text-white text-[clamp(2rem,10vw,10rem)] leading-none font-[space]">
           {/* <FadeInFromBottom delay={1}> */}
           <ParallaxSection speed={-0.1}>
             <CenterRevealText text="I AM" delay={1} />
@@ -179,11 +179,11 @@ const Hero: React.FC = () => {
             <CenterRevealText
               text="FULL STACK"
               delay={1}
-              className="text-white text-[clamp(3rem,10vw,10rem)] leading-none font-[space]"
+              className="text-white text-[clamp(2rem,10vw,10rem)] leading-none font-[space]"
             />
           </ParallaxSection>
           <ParallaxSection speed={0.1}>
-            <p className="text-white text-[clamp(1rem,5vw,2rem)] leading-none font-[space] text-end">
+            <p className="text-white pr-2 md:pr-6 text-[clamp(1rem,4vw,2rem)] leading-none font-[space] text-end">
               DEVELOPER
             </p>
             {/* <CenterRevealText
@@ -195,7 +195,7 @@ const Hero: React.FC = () => {
         </div>
 
         {/* CENTER BOTTOM DESCRIPTION TEXT */}
-        <div className="absolute bottom-20 md:bottom-10 w-[80vw] sm:w-[60vw] md:w-[30vw] lg:w-[25vw]">
+        <div className="absolute hidden sm:block sm:bottom-10 w-[80vw] sm:w-[30vw] lg:w-[25vw]">
           {/* <FadeInFromBottom delay={1.5}> */}
           <ParallaxSection speed={0.15}>
             {/* <div className="text-white font-[space] text-[clamp(1rem,2vw,1.5rem)] leading-[1.2]">
