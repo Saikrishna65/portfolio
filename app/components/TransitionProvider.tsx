@@ -22,20 +22,18 @@ export default function TransitionProvider({
   const [showLoader, setShowLoader] = useState(true);
   const [isFirstLoad, setIsFirstLoad] = useState(true);
 
-  // ------------------------------
-  // 🧭 First visit loader logic
-  // ------------------------------
+  // First visit loader logic
   const handleLoaderComplete = async () => {
-    // 1️⃣ Loader reaches 100% → immediately start close animation
+    // Loader reaches 100% → immediately start close animation
     if (transitionRef.current) {
       await transitionRef.current.closeAnimation(); // Close transition happens over loader
     }
 
-    // 2️⃣ Once closed, hide loader and open home page
+    // Once closed, hide loader and open home page
     setShowLoader(false);
     setIsFirstLoad(false);
 
-    // 3️⃣ Instantly open the transition to reveal the page
+    // Instantly open the transition to reveal the page
     setTimeout(() => {
       transitionRef.current?.openAnimation();
     }, 100); // slight delay for cinematic timing
@@ -64,9 +62,7 @@ export default function TransitionProvider({
     isTransitioning.current = false;
   };
 
-  // ------------------------------
-  // 🕓 Handle route changes (open animation on nav)
-  // ------------------------------
+  // open animation on nav
   useEffect(() => {
     if (isFirstLoad || !transitionRef.current) return;
     const animateOnRouteChange = async () => {
@@ -77,9 +73,7 @@ export default function TransitionProvider({
     animateOnRouteChange();
   }, [pathname]);
 
-  // ------------------------------
   // Render
-  // ------------------------------
   return (
     <>
       <PageTransition ref={transitionRef} />

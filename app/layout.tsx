@@ -1,3 +1,4 @@
+import SmoothScroll from "./components/SmoothScroll";
 import TransitionProvider from "./components/TransitionProvider";
 import "./globals.css";
 
@@ -15,7 +16,9 @@ export default function RootLayout({
     <html lang="en">
       <body>
         {/* TransitionProvider handles loader + page transitions */}
-        <TransitionProvider>{children}</TransitionProvider>
+        <TransitionProvider>
+          <SmoothScroll>{children}</SmoothScroll>
+        </TransitionProvider>
       </body>
     </html>
   );

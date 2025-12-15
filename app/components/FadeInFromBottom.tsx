@@ -8,10 +8,10 @@ gsap.registerPlugin(ScrollTrigger);
 
 interface FadeInFromBottomProps {
   children: React.ReactNode;
-  delay?: number; // optional delay for staggered animations
-  duration?: number; // animation speed
-  y?: number; // starting Y offset
-  triggerOnce?: boolean; // play once or every scroll
+  delay?: number;
+  duration?: number;
+  y?: number;
+  triggerOnce?: boolean;
 }
 
 const FadeInFromBottom: React.FC<FadeInFromBottomProps> = ({
@@ -38,12 +38,12 @@ const FadeInFromBottom: React.FC<FadeInFromBottomProps> = ({
           ease: "power3.out",
           scrollTrigger: {
             trigger: ref.current,
-            start: "top 85%", // when the element enters viewport
+            start: "top 85%",
             toggleActions: triggerOnce
               ? "play none none none"
               : "play reverse play reverse",
           },
-        }
+        },
       );
     }, ref);
 

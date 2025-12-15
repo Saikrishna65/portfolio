@@ -1,7 +1,6 @@
 "use client";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { div } from "motion/react-client";
 import React, { useEffect, useLayoutEffect, useRef, useState } from "react";
 import CenterRevealText from "./CenterRevealText";
 import { CheckCheck, Copy, Copyright } from "lucide-react";
@@ -99,105 +98,104 @@ const Contact = () => {
   }, []);
 
   return (
-    <div
+    <section
+      id="contact"
       ref={containerRef}
-      className="relative w-full h-screen overflow-hidden"
+      className="relative h-screen w-full overflow-hidden"
     >
-      <div className="w-full h-full flex items-center justify-center">
+      <div className="flex h-full w-full items-center justify-center">
         <div
           ref={leftRef}
-          className="text-white text-[clamp(4rem,15vw,15rem)] font-[bebas]"
+          className="font-[bebas] text-[clamp(4rem,15vw,15rem)] text-white"
         >
           LET’
         </div>
 
         <div
           ref={centerRef}
-          className="mask-text text-white text-[clamp(4rem,15vw,15rem)]
-             font-[bebas] mr-10
-             origin-center will-change-transform"
+          className="mask-text mr-10 origin-center font-[bebas] text-[clamp(4rem,15vw,15rem)] text-white will-change-transform"
         >
           S
         </div>
 
         <div
           ref={rightRef}
-          className="text-white text-[clamp(4rem,15vw,15rem)] font-[bebas]"
+          className="font-[bebas] text-[clamp(4rem,15vw,15rem)] text-white"
         >
           CONNECT
         </div>
       </div>
       {secondLayer && (
-        <div className="absolute top-0 z-10 bg-white w-full h-full px-5 md:px-10 py-[clamp(1rem,3vw,3rem)]">
-          <div className="w-full h-[50%] md:flex">
+        <div className="absolute top-0 z-10 h-full w-full bg-white px-5 py-[clamp(1rem,3vw,3rem)] md:px-10">
+          <div className="h-[50%] w-full md:flex">
             <div className="md:w-[50%]">
               <CenterRevealText
                 text="Slide into my inbox. It’s well-designed."
-                className="text-[clamp(2rem,6vh,8rem)] lg:text-[clamp(3rem,6vw,5rem)] leading-[1.1] font-semibold tracking-wide [word-spacing:0.3rem] font-[impact]"
+                className="font-[impact] text-[clamp(2rem,6vh,8rem)] leading-[1.1] font-semibold tracking-wide [word-spacing:0.3rem] lg:text-[clamp(3rem,6vw,5rem)]"
               />
               <CenterRevealText
                 text="Working hard, wherever Wi-Fi takes me."
-                className="text-[clamp(1rem,2vh,2rem)] md:text-[clamp(0.5rem,3vw,1.5rem)] font-[space] font-semibold"
+                className="font-[space] text-[clamp(1rem,2vh,2rem)] font-semibold md:text-[clamp(0.5rem,3vw,1.5rem)]"
               />
             </div>
-            <div className="md:w-[50%] pt-[clamp(1rem,7vh,10rem)] flex flex-col items-center justify-center">
-              <div className="flex items-center gap-2 w-fit select-none">
+            <div className="flex flex-col items-center justify-center pt-[clamp(1rem,7vh,10rem)] md:w-[50%]">
+              <div className="flex w-fit items-center gap-2 select-none">
                 <CenterRevealText
                   text={email}
-                  className="text-gray-800 bg-gray-100 text-[clamp(0.8rem,3vw,1rem)] rounded-lg px-4 py-2 font-[mons]"
+                  className="rounded-lg bg-gray-100 px-4 py-2 font-[mons] text-[clamp(0.8rem,3vw,1rem)] text-gray-800"
                 />
 
                 <button
                   onClick={handleCopy}
-                  className="rounded-lg p-2 cursor-pointer bg-gray-100 transition"
+                  className="cursor-pointer rounded-lg bg-gray-100 p-2 transition"
                 >
                   {copied ? (
-                    <CheckCheck className="w-5 h-5 text-black" />
+                    <CheckCheck className="h-5 w-5 text-black" />
                   ) : (
-                    <Copy className="w-5 h-5 text-bkack" />
+                    <Copy className="text-bkack h-5 w-5" />
                   )}
                 </button>
               </div>
-              <div className="flex gap-1 mt-4">
+              <div className="mt-4 flex gap-1">
                 <CenterRevealText
                   text="Local time"
-                  className="text-[clamp(0.9rem,2vw,1rem)] font-[mons]"
+                  className="font-[mons] text-[clamp(0.9rem,2vw,1rem)]"
                 />
 
                 <CenterRevealText
                   text={time}
-                  className="text-[clamp(0.9rem,2vw,1rem)] font-[mons]"
+                  className="font-[mons] text-[clamp(0.9rem,2vw,1rem)]"
                 />
               </div>
             </div>
           </div>
-          <div className="relative w-full h-[50%] flex flex-col items-center justify-center">
+          <div className="relative flex h-[50%] w-full flex-col items-center justify-center">
             <div className="flex items-center justify-center gap-10">
               <a href="https://www.linkedin.com/in/saikrishnamangina/">
                 <CenterRevealText
                   text="LinkedIn"
-                  className="text-[clamp(0.9rem,2vw,1.5rem)] font-[mons]"
+                  className="font-[mons] text-[clamp(0.9rem,2vw,1.5rem)]"
                 />
               </a>
               <a href="https://github.com/Saikrishna65">
                 <CenterRevealText
                   text="GitHub"
-                  className="text-[clamp(0.9rem,2vw,1.5rem)] font-[mons]"
+                  className="font-[mons] text-[clamp(0.9rem,2vw,1.5rem)]"
                 />
               </a>
             </div>
-            <div className="absolute bottom-0 flex gap-2 items-center">
-              <Copyright className="w-4 h-4 md:w-6 md:h-6" />
+            <div className="absolute bottom-0 flex items-center gap-2">
+              <Copyright className="h-4 w-4 md:h-6 md:w-6" />
               <CenterRevealText
                 text="2025 Sai Krishna. All rights reserved… probably."
-                className="text-[clamp(0.5rem,3vw,1rem)] font-[mons]"
+                className="font-[mons] text-[clamp(0.5rem,3vw,1rem)]"
                 noScroll
               />
             </div>
           </div>
         </div>
       )}
-    </div>
+    </section>
   );
 };
 

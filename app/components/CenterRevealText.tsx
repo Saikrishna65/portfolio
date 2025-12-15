@@ -75,7 +75,7 @@ const CenterRevealText = ({
         {words.map((word, i) => (
           <span
             key={i}
-            className="reveal-word inline-block overflow-hidden mr-[0.25em]"
+            className="reveal-word mr-[0.25em] inline-block overflow-hidden"
             style={{
               willChange: "clip-path, transform, opacity",
             }}

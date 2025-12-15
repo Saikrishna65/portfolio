@@ -1,8 +1,7 @@
-"use client"; // 👈 required for GSAP + useState/useEffect
+"use client";
 
 import React, { useRef, useEffect, useState } from "react";
 import { gsap } from "gsap";
-import FadeInFromBottom from "./FadeInFromBottom";
 
 interface NavLink {
   label: string;
@@ -16,7 +15,6 @@ export default function Sidebar() {
   const tlRef = useRef<gsap.core.Timeline | null>(null);
   const linksRef = useRef<(HTMLAnchorElement | null)[]>([]);
 
-  // GSAP sidebar animation setup
   useEffect(() => {
     const tl = gsap.timeline({ paused: true });
 
@@ -33,7 +31,7 @@ export default function Sidebar() {
         borderBottomLeftRadius: 0,
         duration: 0.8,
         ease: "power2.out",
-      }
+      },
     );
 
     tl.fromTo(
@@ -46,7 +44,7 @@ export default function Sidebar() {
         duration: 0.5,
         ease: "power2.out",
       },
-      "-=0.4"
+      "-=0.4",
     );
 
     tlRef.current = tl;
@@ -55,18 +53,15 @@ export default function Sidebar() {
     };
   }, []);
 
-  // Disable scroll when sidebar is open
   useEffect(() => {
     document.body.style.overflow = open ? "hidden" : "";
   }, [open]);
 
-  // Play or reverse animation on open state
   useEffect(() => {
     if (!tlRef.current) return;
     open ? tlRef.current.play() : tlRef.current.reverse();
   }, [open]);
 
-  // Close sidebar on outside click
   useEffect(() => {
     const handleClickOutside = (e: MouseEvent) => {
       if (
@@ -96,15 +91,15 @@ export default function Sidebar() {
       <button
         ref={buttonRef}
         onClick={() => setOpen((prev) => !prev)}
-        className="fixed top-4 right-4 z-50 w-16 h-16 bg-[#00CAFF] rounded-full flex items-center justify-center focus:outline-none"
+        className="fixed top-4 right-4 z-50 flex h-14 w-14 items-center justify-center rounded-full bg-[#00CAFF] focus:outline-none md:h-16 md:w-16"
       >
         <span
-          className={`absolute w-6 h-0.5 bg-black transition-transform duration-300 ${
+          className={`absolute h-0.5 w-6 bg-black transition-transform duration-300 ${
             open ? "rotate-45" : "-translate-y-1.5"
           }`}
         />
         <span
-          className={`absolute w-6 h-0.5 bg-black transition-transform duration-300 ${
+          className={`absolute h-0.5 w-6 bg-black transition-transform duration-300 ${
             open ? "-rotate-45" : "translate-y-1.5"
           }`}
         />
@@ -112,11 +107,11 @@ export default function Sidebar() {
 
       <div
         ref={sidebarRef}
-        className="fixed top-0 inset-y-0 right-0 z-40 w-full md:w-[450px] h-full overflow-hidden bg-white"
+        className="fixed inset-y-0 top-0 right-0 z-40 h-full w-full overflow-hidden bg-white md:w-[450px]"
         style={{ transform: "translateX(100%)" }}
       >
-        <div className="h-full w-full flex flex-col items-center justify-center px-6 overflow-auto">
-          <ul className="space-y-6 text-center text-black text-2xl font-semibold">
+        <div className="flex h-full w-full flex-col items-center justify-center overflow-auto px-6">
+          <ul className="space-y-6 text-center text-2xl font-semibold text-black">
             {navLinks.map((item, idx) => (
               <li key={idx}>
                 <a
@@ -124,7 +119,7 @@ export default function Sidebar() {
                   ref={(el) => {
                     linksRef.current[idx] = el;
                   }}
-                  className="hover:text-blue-600 transition"
+                  className="transition hover:text-blue-600"
                   onClick={() => setOpen(false)}
                 >
                   {item.label}

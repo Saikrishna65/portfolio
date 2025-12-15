@@ -52,7 +52,7 @@ const ScrollAnimatedText: React.FC<ScrollAnimatedTextProps> = ({
   return (
     <h1
       ref={textRef}
-      className={`relative overflow-hidden inline-block font-bold uppercase ${className}`}
+      className={`relative inline-block overflow-hidden font-bold uppercase ${className}`}
       style={{
         lineHeight: 1,
         whiteSpace: "nowrap",

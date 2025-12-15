@@ -11,58 +11,25 @@ body::-webkit-scrollbar {
   display: none;
 }
 
-/* .mask-layer {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-
-  mask-image: text;
-  mask-repeat: no-repeat;
-  mask-position: center;
-  mask-size: contain;
-}
-
-.mask-text {
-  color: white;
-  mix-blend-mode: screen;
-} */
-
 @font-face {
   font-family: "mons";
   src: url("/font/Mons.ttf") format("truetype");
-  /* font-weight: 400; */
-  /* font-style: normal; */
 }
 @font-face {
   font-family: "impact";
   src: url("/font/Impact.ttf") format("truetype");
-  /* font-weight: 400; */
-  /* font-style: normal; */
 }
 @font-face {
   font-family: "bebas";
   src: url("/font/Bebas.ttf") format("truetype");
-  /* font-weight: 400; */
-  /* font-style: normal; */
 }
 @font-face {
   font-family: "space";
   src: url("/font/space.ttf") format("truetype");
-  /* font-weight: 400; */
-  /* font-style: normal; */
 }
 @font-face {
   font-family: "outfit";
   src: url("/font/outfit.ttf") format("truetype");
-  /* font-weight: 400; */
-  /* font-style: normal; */
-}
-@font-face {
-  font-family: "inter";
-  src: url("/font/inter-black.otf") format("truetype");
-  /* font-weight: 400; */
-  /* font-style: normal; */
 }
 
 @keyframes marquee {

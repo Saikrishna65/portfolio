@@ -1,8 +1,6 @@
 "use client";
 import React, { useEffect, useRef } from "react";
 import gsap from "gsap";
-import ResumeButtons from "./ResumeButtons";
-import FadeInFromBottom from "./FadeInFromBottom";
 import ParallaxSection from "./ParallaxSection";
 import CenterRevealText from "./CenterRevealText";
 
@@ -111,11 +109,11 @@ const Hero: React.FC = () => {
   return (
     <section
       id="home"
-      className="relative w-full h-[60vh] sm:h-screen overflow-hidden bg-black"
+      className="relative h-[60vh] w-full overflow-hidden bg-black sm:h-screen"
     >
       <div
         ref={gridRef}
-        className="absolute grid grid-cols-3 md:grid-cols-5 w-full h-full pointer-events-none"
+        className="pointer-events-none absolute grid h-full w-full grid-cols-3 md:grid-cols-5"
         style={{
           maskImage: `radial-gradient(
           circle ${radius + fade}px at var(--x, -999px) var(--y, -999px),
@@ -141,14 +139,14 @@ const Hero: React.FC = () => {
         {[...Array(20)].map((_, i) => (
           <div
             key={i}
-            className="border border-[#656565] flex items-center justify-center p-2 sm:p-3 md:p-4 overflow-hidden"
+            className="flex items-center justify-center overflow-hidden border border-[#656565] p-2 sm:p-3 md:p-4"
           >
             <pre
-              className="text-[clamp(7px,1vw,12px)] leading-relaxed text-[#656565] font-mono whitespace-pre-wrap"
+              className="font-mono text-[clamp(7px,1vw,12px)] leading-relaxed whitespace-pre-wrap text-[#656565]"
               dangerouslySetInnerHTML={{
                 __html: formatHTML(getRandomSnippet()).replace(
                   /(&lt;\/?\w+.*?&gt;)/g,
-                  `<span>$1</span>`
+                  `<span>$1</span>`,
                 ),
               }}
             />
@@ -156,8 +154,8 @@ const Hero: React.FC = () => {
         ))}
       </div>
 
-      <div className="relative w-full h-full px-4 sm:px-6 md:px-10 p-4 md:p-5">
-        <div className="absolute z-10 text-white text-[clamp(2rem,10vw,10rem)] leading-none font-[space]">
+      <div className="relative h-full w-full p-4 px-4 sm:px-6 md:p-5 md:px-10">
+        <div className="absolute z-10 font-[space] text-[clamp(2rem,10vw,10rem)] leading-none text-white">
           {/* <FadeInFromBottom delay={1}> */}
           <ParallaxSection speed={-0.1}>
             <CenterRevealText text="I AM" delay={1} />
@@ -170,7 +168,7 @@ const Hero: React.FC = () => {
         </div>
 
         {/* RIGHT BOTTOM TITLE */}
-        <div className="absolute bottom-0 right-4 sm:right-6 md:right-10 z-10">
+        <div className="absolute right-4 bottom-0 z-10 sm:right-6 md:right-10">
           {/* <FadeInFromBottom delay={1.3}> */}
           <ParallaxSection speed={-0.1}>
             {/* <h1 className="text-white text-[clamp(3rem,10vw,10rem)] leading-none font-[space]">
@@ -179,11 +177,11 @@ const Hero: React.FC = () => {
             <CenterRevealText
               text="FULL STACK"
               delay={1}
-              className="text-white text-[clamp(2rem,10vw,10rem)] leading-none font-[space]"
+              className="font-[space] text-[clamp(2rem,10vw,10rem)] leading-none text-white"
             />
           </ParallaxSection>
           <ParallaxSection speed={0.1}>
-            <p className="text-white pr-2 md:pr-6 text-[clamp(1rem,4vw,2rem)] leading-none font-[space] text-end">
+            <p className="pr-2 text-end font-[space] text-[clamp(1rem,4vw,2rem)] leading-none text-white md:pr-6">
               DEVELOPER
             </p>
             {/* <CenterRevealText
@@ -195,7 +193,7 @@ const Hero: React.FC = () => {
         </div>
 
         {/* CENTER BOTTOM DESCRIPTION TEXT */}
-        <div className="absolute hidden sm:block sm:bottom-10 w-[80vw] sm:w-[30vw] lg:w-[25vw]">
+        <div className="absolute hidden w-[80vw] sm:bottom-10 sm:block sm:w-[30vw] lg:w-[25vw]">
           {/* <FadeInFromBottom delay={1.5}> */}
           <ParallaxSection speed={0.15}>
             {/* <div className="text-white font-[space] text-[clamp(1rem,2vw,1.5rem)] leading-[1.2]">
@@ -203,7 +201,7 @@ const Hero: React.FC = () => {
             </div> */}
             <CenterRevealText
               delay={1}
-              className="text-white font-[space] text-[clamp(1rem,2vw,1.5rem)] leading-[1.2]"
+              className="font-[space] text-[clamp(1rem,2vw,1.5rem)] leading-[1.2] text-white"
               text="Pixel-perfect websites — flawless even on your ex’s phone."
             />
           </ParallaxSection>

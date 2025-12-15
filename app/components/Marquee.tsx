@@ -35,8 +35,8 @@ const Marquee: React.FC<MarqueeProps> = ({
   return (
     <div
       className={clsx(
-        "relative flex w-[105%] -left-2 overflow-hidden select-none",
-        containerClass
+        "relative -left-2 flex w-[105%] overflow-hidden select-none",
+        containerClass,
       )}
       aria-hidden="true"
       role="presentation"
@@ -45,7 +45,7 @@ const Marquee: React.FC<MarqueeProps> = ({
         ref={trackRef}
         className={clsx(
           "marquee-track flex items-center whitespace-nowrap",
-          direction === "Right" && "[animation-direction:reverse]"
+          direction === "Right" && "[animation-direction:reverse]",
         )}
         style={{ animationDuration: `${duration}s` }}
       >
@@ -56,8 +56,8 @@ const Marquee: React.FC<MarqueeProps> = ({
               <React.Fragment key={`${idx}-${i}`}>
                 <div
                   className={clsx(
-                    "uppercase font-bold flex items-center justify-center leading-none",
-                    textClass
+                    "flex items-center justify-center leading-none font-bold uppercase",
+                    textClass,
                   )}
                 >
                   {isString ? item : item.text}
@@ -71,7 +71,7 @@ const Marquee: React.FC<MarqueeProps> = ({
                 )}
               </React.Fragment>
             );
-          })
+          }),
         )}
       </div>
     </div>

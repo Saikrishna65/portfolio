@@ -20,7 +20,7 @@ export default function Loader({ onComplete }: LoaderProps) {
       const elapsed = Date.now() - start;
       if (elapsed >= totalDuration) {
         setProgress(100);
-        setTimeout(() => onComplete(), 400); // short delay for smooth fade
+        setTimeout(() => onComplete(), 400);
         return;
       }
 
@@ -46,7 +46,7 @@ export default function Loader({ onComplete }: LoaderProps) {
       {progress < 101 && (
         <>
           <motion.div
-            className="fixed inset-0 flex gap-2 items-center justify-center bg-black text-white text-5xl font-[bebas]"
+            className="fixed inset-0 flex items-center justify-center gap-2 bg-black font-[bebas] text-5xl text-white"
             initial={{ opacity: 1 }}
             exit={{
               opacity: 0,
