@@ -111,7 +111,7 @@ const Hero: React.FC = () => {
   return (
     <section
       id="home"
-      className="relative w-full h-[60vh] md:h-screen overflow-hidden bg-black"
+      className="relative w-full h-[60vh] sm:h-screen overflow-hidden bg-black"
     >
       <div
         ref={gridRef}

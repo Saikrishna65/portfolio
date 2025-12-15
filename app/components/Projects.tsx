@@ -113,8 +113,10 @@ export default function Projects() {
               <Image
                 className="physics-float-1 will-change-transform
                 absolute right-0 top-0 
-                md:right-10 md:top-20 
-                w-60 sm:w-64 md:w-72 lg:w-80 xl:w-96 
+                sm:right-[clamp(2rem,10vh,10rem)]
+                sm:top-[clamp(2rem,10vh,10rem)]
+                w-[clamp(200px,30vh,1000px)]
+                md:w-[clamp(200px,25vw,1000px)]
                 h-auto 
                 rounded-2xl 
                 -rotate-6
@@ -125,7 +127,7 @@ export default function Projects() {
                 height={500}
               />
               <Image
-                className="physics-float-2 will-change-transform absolute left-0 top-30 md:left-10 md:top-30 w-28 sm:w-30 md:w-32 lg:w-40 xl:w-50
+                className="physics-float-2 will-change-transform absolute left-0 md:left-[clamp(2rem,10vh,5rem)] top-[clamp(2rem,15vh,8rem)] w-[clamp(100px,12vh,1000px)] md:w-[clamp(100px,12vw,500px)]
     h-auto rounded-2xl rotate-6"
                 src="/images/projects/campus_cravings_1.png"
                 alt="Campus Cravings"
@@ -133,7 +135,7 @@ export default function Projects() {
                 width={500}
               />
               <Image
-                className="physics-float-3 will-change-transform absolute bottom-30 right-10 md:right-50 md:bottom-0 w-62 sm:w-62 md:w-72 lg:w-80 xl:w-80 
+                className="physics-float-3 will-change-transform absolute bottom-[clamp(0.1rem,10vh,5rem)] right-[clamp(2rem,5vh,5rem)] w-[clamp(200px,30vh,1000px)] md:w-[clamp(200px,25vw,1000px)]
     h-auto rounded-2xl rotate-6"
                 src="/images/projects/campus_cravings_2.png"
                 alt="Campus Cravings"
@@ -159,8 +161,10 @@ export default function Projects() {
               <Image
                 className="physics-float-1 will-change-transform
                 absolute right-0 top-0 
-                md:right-10 md:top-20 
-                w-60 sm:w-64 md:w-72 lg:w-80 xl:w-96 
+                sm:right-[clamp(2rem,10vh,10rem)]
+                sm:top-[clamp(2rem,10vh,10rem)]
+                w-[clamp(200px,30vh,1000px)]
+                md:w-[clamp(200px,25vw,1000px)]
                 h-auto 
                 rounded-2xl 
                 -rotate-6
@@ -171,7 +175,7 @@ export default function Projects() {
                 height={500}
               />
               <Image
-                className="physics-float-2 will-change-transform absolute left-0 top-30 md:left-10 md:top-30 w-28 sm:w-30 md:w-32 lg:w-40 xl:w-50
+                className="physics-float-2 will-change-transform absolute left-0 md:left-[clamp(2rem,10vh,5rem)] top-[clamp(2rem,15vh,8rem)] w-[clamp(100px,12vh,1000px)] md:w-[clamp(100px,12vw,500px)]
     h-auto rounded-2xl rotate-6"
                 src="/images/projects/work_bridge_1.png"
                 alt="Campus Cravings"
@@ -179,7 +183,7 @@ export default function Projects() {
                 width={500}
               />
               <Image
-                className="physics-float-3 will-change-transform absolute bottom-30 right-10 md:right-50 md:bottom-0 w-62 sm:w-62 md:w-72 lg:w-80 xl:w-80 
+                className="physics-float-3 will-change-transform absolute bottom-[clamp(0.1rem,10vh,5rem)] right-[clamp(2rem,5vh,5rem)] w-[clamp(200px,30vh,1000px)] md:w-[clamp(200px,25vw,1000px)]
     h-auto rounded-2xl rotate-6"
                 src="/images/projects/work_bridge_2.png"
                 alt="Campus Cravings"
@@ -205,8 +209,10 @@ export default function Projects() {
               <Image
                 className="physics-float-1 will-change-transform
                 absolute right-0 top-0 
-                md:right-10 md:top-20 
-                w-60 sm:w-64 md:w-72 lg:w-80 xl:w-96 
+                sm:right-[clamp(2rem,10vh,10rem)]
+                sm:top-[clamp(2rem,10vh,10rem)]
+                w-[clamp(200px,30vh,1000px)]
+                md:w-[clamp(200px,25vw,1000px)]
                 h-auto 
                 rounded-2xl 
                 -rotate-6
@@ -217,7 +223,7 @@ export default function Projects() {
                 height={500}
               />
               <Image
-                className="physics-float-2 will-change-transform absolute left-0 top-30 md:left-10 md:top-30 w-28 sm:w-30 md:w-32 lg:w-40 xl:w-50
+                className="physics-float-2 will-change-transform absolute left-0 md:left-[clamp(2rem,10vh,5rem)] top-[clamp(2rem,15vh,8rem)] w-[clamp(100px,12vh,1000px)] md:w-[clamp(100px,12vw,500px)]
     h-auto rounded-2xl rotate-6"
                 src="/images/projects/fight_club_1.png"
                 alt="Campus Cravings"
@@ -225,7 +231,7 @@ export default function Projects() {
                 width={500}
               />
               <Image
-                className="physics-float-3 will-change-transform absolute bottom-30 right-10 md:right-50 md:bottom-0 w-62 sm:w-62 md:w-72 lg:w-80 xl:w-80 
+                className="physics-float-3 will-change-transform absolute bottom-[clamp(0.1rem,10vh,5rem)] right-[clamp(2rem,5vh,5rem)] w-[clamp(200px,30vh,1000px)] md:w-[clamp(200px,25vw,1000px)]
     h-auto rounded-2xl rotate-6"
                 src="/images/projects/fight_club_2.png"
                 alt="Campus Cravings"
@@ -251,8 +257,10 @@ export default function Projects() {
               <Image
                 className="physics-float-1 will-change-transform
                 absolute right-0 top-0 
-                md:right-10 md:top-20 
-                w-60 sm:w-64 md:w-72 lg:w-80 xl:w-96 
+                sm:right-[clamp(2rem,10vh,10rem)]
+                sm:top-[clamp(2rem,10vh,10rem)]
+                w-[clamp(200px,30vh,1000px)]
+                md:w-[clamp(200px,25vw,1000px)]
                 h-auto 
                 rounded-2xl 
                 -rotate-6
@@ -263,7 +271,7 @@ export default function Projects() {
                 height={500}
               />
               <Image
-                className="physics-float-2 will-change-transform absolute left-0 top-30 md:left-10 md:top-30 w-28 sm:w-30 md:w-32 lg:w-40 xl:w-50
+                className="physics-float-2 will-change-transform absolute left-0 md:left-[clamp(2rem,10vh,5rem)] top-[clamp(2rem,15vh,8rem)] w-[clamp(100px,12vh,1000px)] md:w-[clamp(100px,12vw,500px)]
     h-auto rounded-2xl rotate-6"
                 src="/images/projects/bmw_car_1.png"
                 alt="Campus Cravings"
@@ -271,7 +279,7 @@ export default function Projects() {
                 width={500}
               />
               <Image
-                className="physics-float-3 will-change-transform absolute bottom-30 right-10 md:right-50 md:bottom-0 w-62 sm:w-62 md:w-72 lg:w-80 xl:w-80 
+                className="physics-float-3 will-change-transform absolute bottom-[clamp(0.1rem,10vh,5rem)] right-[clamp(2rem,5vh,5rem)] w-[clamp(200px,30vh,1000px)] md:w-[clamp(200px,25vw,1000px)]
     h-auto rounded-2xl rotate-6"
                 src="/images/projects/bmw_car_2.png"
                 alt="Campus Cravings"
