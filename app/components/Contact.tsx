@@ -169,28 +169,31 @@ const Contact = () => {
               </div>
             </div>
           </div>
-          <div className="relative flex h-[50%] w-full flex-col items-center justify-center">
-            <div className="flex items-center justify-center gap-10">
-              <a href="https://www.linkedin.com/in/saikrishnamangina/">
+
+          <div className="absolute bottom-0 h-[30%] w-full md:h-[50%]">
+            <div className="relative flex h-full w-full flex-col items-center justify-center">
+              <div className="flex items-center justify-center gap-10">
+                <a href="https://www.linkedin.com/in/saikrishnamangina/">
+                  <CenterRevealText
+                    text="LinkedIn"
+                    className="font-[mons] text-[clamp(0.9rem,2vw,1.5rem)]"
+                  />
+                </a>
+                <a href="https://github.com/Saikrishna65">
+                  <CenterRevealText
+                    text="GitHub"
+                    className="font-[mons] text-[clamp(0.9rem,2vw,1.5rem)]"
+                  />
+                </a>
+              </div>
+              <div className="absolute bottom-1 flex items-center gap-2 sm:bottom-5">
+                <Copyright className="h-4 w-4 md:h-6 md:w-6" />
                 <CenterRevealText
-                  text="LinkedIn"
-                  className="font-[mons] text-[clamp(0.9rem,2vw,1.5rem)]"
+                  text="2025 Sai Krishna. All rights reserved… probably."
+                  className="font-[mons] text-[clamp(0.5rem,3vw,1rem)]"
+                  noScroll
                 />
-              </a>
-              <a href="https://github.com/Saikrishna65">
-                <CenterRevealText
-                  text="GitHub"
-                  className="font-[mons] text-[clamp(0.9rem,2vw,1.5rem)]"
-                />
-              </a>
-            </div>
-            <div className="absolute bottom-0 flex items-center gap-2">
-              <Copyright className="h-4 w-4 md:h-6 md:w-6" />
-              <CenterRevealText
-                text="2025 Sai Krishna. All rights reserved… probably."
-                className="font-[mons] text-[clamp(0.5rem,3vw,1rem)]"
-                noScroll
-              />
+              </div>
             </div>
           </div>
         </div>

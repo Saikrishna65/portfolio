@@ -1,6 +1,5 @@
 import About from "./components/About";
 import Contact from "./components/Contact";
-import FadeInFromBottom from "./components/FadeInFromBottom";
 import Hero from "./components/Hero";
 import Marquee from "./components/Marquee";
 import Projects from "./components/Projects";
@@ -24,7 +23,7 @@ export default async function Home() {
       <Sidebar />
       <Hero />
 
-      <div className="relative h-32 md:h-40 overflow-x-hidden">
+      <div className="relative h-32 overflow-x-hidden md:h-40">
         <div className="absolute top-1/2 left-0 z-10 w-full -translate-y-1/2">
           <Marquee
             phrases={techPhrases}
