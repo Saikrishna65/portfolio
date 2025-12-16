@@ -2,7 +2,7 @@
 import React, { useEffect, useRef } from "react";
 import gsap from "gsap";
 import ParallaxSection from "./ParallaxSection";
-import CenterRevealText from "./CenterRevealText";
+import StageTiltReveal from "./StageTiltReveal";
 
 const randomHTMLSnippets = [
   `<div class='intro-box'>
@@ -158,11 +158,11 @@ const Hero: React.FC = () => {
         <div className="absolute z-10 font-[space] text-[clamp(2rem,10vw,10rem)] leading-none text-white">
           {/* <FadeInFromBottom delay={1}> */}
           <ParallaxSection speed={-0.1}>
-            <CenterRevealText text="I AM" delay={1} />
+            <StageTiltReveal text="I AM" direction="right" delay={1} />
           </ParallaxSection>
 
           <ParallaxSection speed={0.2}>
-            <CenterRevealText text="SAI KRISHNA" delay={1} />
+            <StageTiltReveal text="SAI KRISHNA" direction="left" delay={1} />
           </ParallaxSection>
           {/* </FadeInFromBottom> */}
         </div>
@@ -174,9 +174,10 @@ const Hero: React.FC = () => {
             {/* <h1 className="text-white text-[clamp(3rem,10vw,10rem)] leading-none font-[space]">
                 FULL STACK
               </h1> */}
-            <CenterRevealText
+            <StageTiltReveal
               text="FULL STACK"
               delay={1}
+              direction="right"
               className="font-[space] text-[clamp(2rem,10vw,10rem)] leading-none text-white"
             />
           </ParallaxSection>
@@ -199,8 +200,9 @@ const Hero: React.FC = () => {
             {/* <div className="text-white font-[space] text-[clamp(1rem,2vw,1.5rem)] leading-[1.2]">
               Pixel-perfect websites — flawless even on your ex’s phone.
             </div> */}
-            <CenterRevealText
+            <StageTiltReveal
               delay={1}
+              direction="right"
               className="font-[space] text-[clamp(1rem,2vw,1.5rem)] leading-[1.2] text-white"
               text="Pixel-perfect websites — flawless even on your ex’s phone."
             />

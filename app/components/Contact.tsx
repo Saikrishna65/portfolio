@@ -2,8 +2,8 @@
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import React, { useEffect, useLayoutEffect, useRef, useState } from "react";
-import CenterRevealText from "./CenterRevealText";
 import { CheckCheck, Copy, Copyright } from "lucide-react";
+import StageTiltReveal from "./StageTiltReveal";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -129,18 +129,21 @@ const Contact = () => {
         <div className="absolute top-0 z-10 h-full w-full bg-white px-5 py-[clamp(1rem,3vw,3rem)] md:px-10">
           <div className="h-[50%] w-full md:flex">
             <div className="md:w-[50%]">
-              <CenterRevealText
+              <StageTiltReveal
+                direction="right"
                 text="Slide into my inbox. It’s well-designed."
                 className="font-[impact] text-[clamp(2rem,6vh,8rem)] leading-[1.1] font-semibold tracking-wide [word-spacing:0.3rem] lg:text-[clamp(3rem,6vw,5rem)]"
               />
-              <CenterRevealText
+              <StageTiltReveal
+                direction="left"
                 text="Working hard, wherever Wi-Fi takes me."
                 className="font-[space] text-[clamp(1rem,2vh,2rem)] font-semibold md:text-[clamp(0.5rem,3vw,1.5rem)]"
               />
             </div>
             <div className="flex flex-col items-center justify-center pt-[clamp(1rem,7vh,10rem)] md:w-[50%]">
               <div className="flex w-fit items-center gap-2 select-none">
-                <CenterRevealText
+                <StageTiltReveal
+                  direction="left"
                   text={email}
                   className="rounded-lg bg-gray-100 px-4 py-2 font-[mons] text-[clamp(0.8rem,3vw,1rem)] text-gray-800"
                 />
@@ -157,12 +160,14 @@ const Contact = () => {
                 </button>
               </div>
               <div className="mt-4 flex gap-1">
-                <CenterRevealText
+                <StageTiltReveal
+                  direction="right"
                   text="Local time"
                   className="font-[mons] text-[clamp(0.9rem,2vw,1rem)]"
                 />
 
-                <CenterRevealText
+                <StageTiltReveal
+                  direction="right"
                   text={time}
                   className="font-[mons] text-[clamp(0.9rem,2vw,1rem)]"
                 />
@@ -174,13 +179,15 @@ const Contact = () => {
             <div className="relative flex h-full w-full flex-col items-center justify-center">
               <div className="flex items-center justify-center gap-10">
                 <a href="https://www.linkedin.com/in/saikrishnamangina/">
-                  <CenterRevealText
+                  <StageTiltReveal
+                    direction="left"
                     text="LinkedIn"
                     className="font-[mons] text-[clamp(0.9rem,2vw,1.5rem)]"
                   />
                 </a>
                 <a href="https://github.com/Saikrishna65">
-                  <CenterRevealText
+                  <StageTiltReveal
+                    direction="right"
                     text="GitHub"
                     className="font-[mons] text-[clamp(0.9rem,2vw,1.5rem)]"
                   />
@@ -188,10 +195,11 @@ const Contact = () => {
               </div>
               <div className="absolute bottom-1 flex items-center gap-2 sm:bottom-5">
                 <Copyright className="h-4 w-4 md:h-6 md:w-6" />
-                <CenterRevealText
+                <StageTiltReveal
+                  direction="right"
                   text="2025 Sai Krishna. All rights reserved… probably."
                   className="font-[mons] text-[clamp(0.5rem,3vw,1rem)]"
-                  noScroll
+                  // noScroll
                 />
               </div>
             </div>
