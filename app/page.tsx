@@ -1,9 +1,11 @@
 import About from "./components/About";
 import Contact from "./components/Contact";
+import CursorSystem from "./components/CursorSystem";
 import Hero from "./components/Hero";
 import Marquee from "./components/Marquee";
 import Projects from "./components/Projects";
 import Sidebar from "./components/Sidebar";
+import ToggleButtons from "./components/ToggleButtons";
 
 const techPhrases = [
   "React",
@@ -20,7 +22,11 @@ export default async function Home() {
   // await new Promise((resolve) => setTimeout(resolve, 3000));
   return (
     <div>
-      <Sidebar />
+      <CursorSystem />
+      <div className="fixed top-4 right-4 z-50 flex gap-5 md:gap-14">
+        <ToggleButtons />
+        <Sidebar />
+      </div>
       <Hero />
 
       <div className="relative h-32 overflow-x-hidden md:h-40">

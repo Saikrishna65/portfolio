@@ -3,6 +3,8 @@ import React, { useEffect, useRef } from "react";
 import gsap from "gsap";
 import ParallaxSection from "./ParallaxSection";
 import StageTiltReveal from "./StageTiltReveal";
+import { usePortfolio } from "../context/PortfolioContext";
+import { content } from "../data/content";
 
 const randomHTMLSnippets = [
   `<div class='intro-box'>
@@ -70,6 +72,11 @@ const Hero: React.FC = () => {
   const gridRef = useRef<HTMLDivElement>(null);
   const radius = 50;
   const fade = 100;
+
+  const { mode, language } = usePortfolio();
+
+  const data = content.hero[mode][language];
+  console.log(data.title, typeof data.title[0]);
 
   useEffect(() => {
     const grid = gridRef.current;
@@ -142,7 +149,7 @@ const Hero: React.FC = () => {
             className="flex items-center justify-center overflow-hidden border border-[#656565] p-2 sm:p-3 md:p-4"
           >
             <pre
-              className="font-mono text-[clamp(7px,1vw,12px)] leading-relaxed whitespace-pre-wrap text-[#656565]"
+              className="font-mono text-[clamp(7px,1vw,12px)] leading-relaxed whitespace-pre-wrap text-[#656565] 2xl:text-2xl"
               dangerouslySetInnerHTML={{
                 __html: formatHTML(getRandomSnippet()).replace(
                   /(&lt;\/?\w+.*?&gt;)/g,
@@ -155,14 +162,24 @@ const Hero: React.FC = () => {
       </div>
 
       <div className="relative h-full w-full p-4 px-4 sm:px-6 md:p-5 md:px-10">
-        <div className="absolute z-10 font-[space] text-[clamp(2rem,10vw,10rem)] leading-none text-white">
+        <div className="absolute z-10 pt-16 font-[space] text-[clamp(2rem,10vw,10rem)] leading-none text-white sm:pt-0">
           {/* <FadeInFromBottom delay={1}> */}
           <ParallaxSection speed={-0.1}>
-            <StageTiltReveal text="I AM" direction="right" delay={1} />
+            <StageTiltReveal
+              text={data.title[0]}
+              language={language}
+              direction="right"
+              delay={1}
+            />
           </ParallaxSection>
 
           <ParallaxSection speed={0.2}>
-            <StageTiltReveal text="SAI KRISHNA" direction="left" delay={1} />
+            <StageTiltReveal
+              text={data.title[1]}
+              language={language}
+              direction="left"
+              delay={1}
+            />
           </ParallaxSection>
           {/* </FadeInFromBottom> */}
         </div>
@@ -175,7 +192,8 @@ const Hero: React.FC = () => {
                 FULL STACK
               </h1> */}
             <StageTiltReveal
-              text="FULL STACK"
+              text={data.subtitle[0]}
+              language={language}
               delay={1}
               direction="right"
               className="font-[space] text-[clamp(2rem,10vw,10rem)] leading-none text-white"
@@ -183,7 +201,7 @@ const Hero: React.FC = () => {
           </ParallaxSection>
           <ParallaxSection speed={0.1}>
             <p className="pr-2 text-end font-[space] text-[clamp(1rem,4vw,2rem)] leading-none text-white md:pr-6">
-              DEVELOPER
+              {data.subtitle[1]}
             </p>
             {/* <CenterRevealText
               text="DEVELOPER"
@@ -203,8 +221,9 @@ const Hero: React.FC = () => {
             <StageTiltReveal
               delay={1}
               direction="right"
+              language={language}
               className="font-[space] text-[clamp(1rem,2vw,1.5rem)] leading-[1.2] text-white"
-              text="Pixel-perfect websites — flawless even on your ex’s phone."
+              text={data.description}
             />
           </ParallaxSection>
           {/* </FadeInFromBottom> */}

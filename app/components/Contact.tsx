@@ -4,6 +4,8 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import React, { useEffect, useLayoutEffect, useRef, useState } from "react";
 import { CheckCheck, Copy, Copyright } from "lucide-react";
 import StageTiltReveal from "./StageTiltReveal";
+import { usePortfolio } from "../context/PortfolioContext";
+import { content } from "../data/content";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -13,6 +15,9 @@ const Contact = () => {
   const leftRef = useRef<HTMLDivElement | null>(null);
   const rightRef = useRef<HTMLDivElement | null>(null);
   const centerRef = useRef<HTMLDivElement | null>(null);
+
+  const { mode, language } = usePortfolio();
+  const data = content.contact[mode][language];
 
   const [time, setTime] = useState("");
   const [copied, setCopied] = useState(false);
@@ -81,6 +86,33 @@ const Contact = () => {
   }, []);
 
   useEffect(() => {
+    // only on fun mode
+    if (mode !== "fun") return;
+    if (!containerRef.current) return;
+
+    const changeText = (newText: string) => {
+      window.dispatchEvent(
+        new CustomEvent("cursorTextChange", {
+          detail: newText,
+        }),
+      );
+    };
+
+    const trigger = ScrollTrigger.create({
+      trigger: containerRef.current,
+      start: "top 60%",
+      end: "bottom 40%",
+
+      onEnter: () => changeText("You made it. Now don’t leave"),
+      onLeave: () => changeText("Contact Me"),
+      onEnterBack: () => changeText("You made it. Now don’t leave"),
+      onLeaveBack: () => changeText("Contact Me"),
+    });
+
+    return () => trigger.kill();
+  }, [mode]);
+
+  useEffect(() => {
     const updateTime = () => {
       const now = new Date();
 
@@ -108,21 +140,21 @@ const Contact = () => {
           ref={leftRef}
           className="font-[bebas] text-[clamp(4rem,15vw,15rem)] text-white"
         >
-          LET’
+          {data.heading1}
         </div>
 
         <div
           ref={centerRef}
           className="mask-text mr-10 origin-center font-[bebas] text-[clamp(4rem,15vw,15rem)] text-white will-change-transform"
         >
-          S
+          {data.heading2}
         </div>
 
         <div
           ref={rightRef}
           className="font-[bebas] text-[clamp(4rem,15vw,15rem)] text-white"
         >
-          CONNECT
+          {data.heading3}
         </div>
       </div>
       {secondLayer && (
@@ -131,8 +163,8 @@ const Contact = () => {
             <div className="md:w-[50%]">
               <StageTiltReveal
                 direction="right"
-                text="Slide into my inbox. It’s well-designed."
-                className="font-[impact] text-[clamp(2rem,6vh,8rem)] leading-[1.1] font-semibold tracking-wide [word-spacing:0.3rem] lg:text-[clamp(3rem,6vw,5rem)]"
+                text="Let’s build something great together."
+                className="font-[impact] text-[clamp(2rem,6vh,8rem)] leading-[1.1] font-semibold [word-spacing:0.3rem] lg:text-[clamp(3rem,6vw,5rem)]"
               />
               <StageTiltReveal
                 direction="left"

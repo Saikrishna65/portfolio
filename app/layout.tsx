@@ -1,5 +1,6 @@
 import SmoothScroll from "./components/SmoothScroll";
 import TransitionProvider from "./components/TransitionProvider";
+import { PortfolioProvider } from "./context/PortfolioContext";
 import "./globals.css";
 
 export const metadata = {
@@ -17,7 +18,9 @@ export default function RootLayout({
       <body>
         {/* TransitionProvider handles loader + page transitions */}
         <TransitionProvider>
-          <SmoothScroll>{children}</SmoothScroll>
+          <PortfolioProvider>
+            <SmoothScroll>{children}</SmoothScroll>
+          </PortfolioProvider>
         </TransitionProvider>
       </body>
     </html>

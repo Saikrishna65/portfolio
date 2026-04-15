@@ -1,251 +1,183 @@
 "use client";
-
-import React, { useEffect, useLayoutEffect, useRef } from "react";
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { ArrowUpRight } from "lucide-react";
 import Image from "next/image";
 
-gsap.registerPlugin(ScrollTrigger);
+import React from "react";
+import { content } from "../data/content";
+import { usePortfolio } from "../context/PortfolioContext";
 
-export default function Projects() {
-  const containerRef = useRef<HTMLDivElement | null>(null);
-  const horizontalRef = useRef<HTMLDivElement | null>(null);
-  const headingRef = useRef<HTMLHeadingElement>(null);
-
-  useLayoutEffect(() => {
-    const container = containerRef.current;
-    const horizontal = horizontalRef.current;
-    if (!container || !horizontal) return;
-
-    const sections = Array.from(
-      horizontal.querySelectorAll(".horizontal-item"),
-    ) as HTMLElement[];
-    const sectionsCount = sections.length;
-    const totalScroll = horizontal.scrollWidth - window.innerWidth;
-
-    if (totalScroll <= 0) return;
-
-    const ctx = gsap.context(() => {
-      gsap.to(horizontal, {
-        x: -totalScroll,
-        ease: "none",
-        scrollTrigger: {
-          trigger: container,
-          start: "top top",
-          end: () => `+=${totalScroll}`,
-          scrub: 0.5,
-          pin: true,
-          anticipatePin: 1,
-          // snap: 1 / (sectionsCount - 1),
-          invalidateOnRefresh: true,
-        },
-      });
-
-      gsap.to(headingRef.current, {
-        scaleX: 0,
-        x: 300,
-        opacity: 0,
-        transformOrigin: "center center",
-        scrollTrigger: {
-          trigger: container,
-          start: "top top",
-          end: "+=800",
-          scrub: true,
-        },
-      });
-    }, container);
-
-    return () => {
-      ctx.revert();
-    };
-  }, []);
-
-  useEffect(() => {
-    const float = (el: Element) => {
-      const move = () =>
-        gsap.to(el, {
-          y: gsap.utils.random(-12, 12),
-          x: gsap.utils.random(-5, 5),
-          duration: gsap.utils.random(2.5, 4),
-          ease: "sine.inOut",
-          overwrite: true,
-          onComplete: move,
-        });
-      move();
-    };
-
-    gsap.utils
-      .toArray<HTMLElement>(
-        ".physics-float-1, .physics-float-2, .physics-float-3",
-      )
-      .forEach(float);
-
-    return () =>
-      gsap.killTweensOf(".physics-float-1, .physics-float-2, .physics-float-3");
-  }, []);
-
+const Projects = () => {
+  const { mode, language } = usePortfolio();
+  const data = content.projects[mode][language];
   return (
-    <section className="w-full text-white">
-      <div ref={containerRef} className="relative w-full overflow-hidden">
-        <div ref={horizontalRef} className="horizontal-scroll flex w-max">
-          <div className="horizontal-item flex h-screen w-screen shrink-0 items-center justify-center">
-            <h1
-              ref={headingRef}
-              className="font-[bebas] text-[clamp(5rem,15vw,15rem)]"
-            >
-              PROJECTS
-            </h1>
-          </div>
-
-          <div className="horizontal-item flex h-screen w-screen shrink-0 items-center justify-center">
-            <div className="relative flex h-[90%] w-[90%] flex-col items-center justify-center">
-              <div className="z-10">
-                <h1 className="font-[space] text-[clamp(2rem,7vw,4rem)] font-extrabold">
-                  Campus Cravings
-                </h1>
-
-                <p className="font-[] max-w-md text-[clamp(1rem,2vw,1.2rem)]">
-                  CampusCravings is a modern food-delivery platform built for
-                  college life — fast orders, smart delivery, and a sleek
-                  interface that makes grabbing a meal feel effortless.
-                </p>
-              </div>
+    <div className="w-full">
+      <div className="text-center font-[space] text-[2.2rem] font-bold tracking-tight text-white md:text-[4rem] lg:text-[6rem]">
+        {data.heading}
+      </div>
+      <div className="mx-auto mt-14 mb-24 grid w-[90%] items-center gap-x-10 gap-y-10 md:w-4/5 md:gap-y-24 lg:w-3/4 lg:grid-cols-2 2xl:w-2/4">
+        <div className="h-110 rounded-3xl bg-[#111111] p-6">
+          <div className="relative flex h-full w-full flex-col gap-3">
+            <div className="h-1/2 w-full overflow-hidden rounded-2xl bg-blue-500">
               <Image
-                className="physics-float-1 absolute top-0 right-0 h-auto w-[clamp(150px,30vh,1000px)] -rotate-6 rounded-2xl will-change-transform sm:top-[clamp(2rem,10vh,10rem)] sm:right-[clamp(2rem,10vh,10rem)] md:w-[clamp(200px,25vw,1000px)]"
                 src="/images/projects/campus_cravings_hero.png"
-                alt="Campus Cravings"
+                alt="campus cravings"
+                className="fill h-full w-full"
                 width={500}
-                height={500}
-              />
-              <Image
-                className="physics-float-2 absolute top-[clamp(2rem,15vh,8rem)] left-0 h-auto w-[clamp(80px,12vh,1000px)] rotate-6 rounded-2xl will-change-transform md:left-[clamp(2rem,10vh,5rem)] md:w-[clamp(100px,12vw,500px)]"
-                src="/images/projects/campus_cravings_1.png"
-                alt="Campus Cravings"
-                height={500}
-                width={500}
-              />
-              <Image
-                className="physics-float-3 absolute right-[clamp(2rem,5vh,5rem)] bottom-[clamp(0.1rem,10vh,5rem)] h-auto w-[clamp(150px,30vh,1000px)] rotate-6 rounded-2xl will-change-transform md:w-[clamp(200px,25vw,1000px)]"
-                src="/images/projects/campus_cravings_2.png"
-                alt="Campus Cravings"
-                height={500}
-                width={500}
+                height={300}
               />
             </div>
-          </div>
-
-          <div className="horizontal-item flex h-screen w-screen shrink-0 items-center justify-center">
-            <div className="relative flex h-[90%] w-[90%] flex-col items-center justify-center">
-              <div className="z-10">
-                <h1 className="font-[space] text-[clamp(2rem,7vw,4rem)] font-extrabold">
-                  WorkBridge
-                </h1>
-
-                <p className="font-[] max-w-md text-[clamp(1rem,2vw,1.2rem)]">
-                  WorkBridge is a modern job-finding platform built to connect
-                  people with work — fast discovery, smart matching, and a
-                  seamless user experience.
-                </p>
+            <div className="flex h-1/2 w-full flex-col gap-2">
+              <div className="font-[mons] text-2xl text-white">
+                {data.projects[0].name}
               </div>
-              <Image
-                className="physics-float-1 absolute top-0 right-0 h-auto w-[clamp(150px,30vh,1000px)] -rotate-6 rounded-2xl will-change-transform sm:top-[clamp(2rem,10vh,10rem)] sm:right-[clamp(2rem,10vh,10rem)] md:w-[clamp(200px,25vw,1000px)]"
-                src="/images/projects/work_bridge_hero.png"
-                alt="Campus Cravings"
-                width={500}
-                height={500}
-              />
-              <Image
-                className="physics-float-2 absolute top-[clamp(2rem,15vh,8rem)] left-0 h-auto w-[clamp(80px,12vh,1000px)] rotate-6 rounded-2xl will-change-transform md:left-[clamp(2rem,10vh,5rem)] md:w-[clamp(100px,12vw,500px)]"
-                src="/images/projects/work_bridge_1.png"
-                alt="Campus Cravings"
-                height={500}
-                width={500}
-              />
-              <Image
-                className="physics-float-3 absolute right-[clamp(2rem,5vh,5rem)] bottom-[clamp(0.1rem,10vh,5rem)] h-auto w-[clamp(150px,30vh,1000px)] rotate-6 rounded-2xl will-change-transform md:w-[clamp(200px,25vw,1000px)]"
-                src="/images/projects/work_bridge_2.png"
-                alt="Campus Cravings"
-                height={500}
-                width={500}
-              />
+              <p className="font-[outfit] text-lg text-white">
+                {data.projects[0].description}
+              </p>
             </div>
-          </div>
 
-          <div className="horizontal-item flex h-screen w-screen shrink-0 items-center justify-center">
-            <div className="relative flex h-[90%] w-[90%] flex-col items-center justify-center">
-              <div className="z-10">
-                <h1 className="font-[space] text-[clamp(2rem,7vw,4rem)] font-extrabold">
-                  Fight Club
-                </h1>
-
-                <p className="font-[] max-w-md text-[clamp(1rem,2vw,1.2rem)]">
-                  Fight Club is a visually striking website inspired by the cult
-                  classic — minimal design, intense aesthetics, and a user
-                  experience that reflects the film’s chaos.
-                </p>
+            <div>
+              <div className="text-lg text-gray-400">
+                {data.projects[0].techStack}
               </div>
-              <Image
-                className="physics-float-1 absolute top-0 right-0 h-auto w-[clamp(150px,30vh,1000px)] -rotate-6 rounded-2xl will-change-transform sm:top-[clamp(2rem,10vh,10rem)] sm:right-[clamp(2rem,10vh,10rem)] md:w-[clamp(200px,25vw,1000px)]"
-                src="/images/projects/fight_club_hero.png"
-                alt="Campus Cravings"
-                width={500}
-                height={500}
-              />
-              <Image
-                className="physics-float-2 absolute top-[clamp(2rem,15vh,8rem)] left-0 h-auto w-[clamp(80px,12vh,1000px)] rotate-6 rounded-2xl will-change-transform md:left-[clamp(2rem,10vh,5rem)] md:w-[clamp(100px,12vw,500px)]"
-                src="/images/projects/fight_club_1.png"
-                alt="Campus Cravings"
-                height={500}
-                width={500}
-              />
-              <Image
-                className="physics-float-3 absolute right-[clamp(2rem,5vh,5rem)] bottom-[clamp(0.1rem,10vh,5rem)] h-auto w-[clamp(150px,30vh,1000px)] rotate-6 rounded-2xl will-change-transform md:w-[clamp(200px,25vw,1000px)]"
-                src="/images/projects/fight_club_2.png"
-                alt="Campus Cravings"
-                height={500}
-                width={500}
-              />
             </div>
-          </div>
 
-          <div className="horizontal-item flex h-screen w-screen shrink-0 items-center justify-center">
-            <div className="relative flex h-[90%] w-[90%] flex-col items-center justify-center">
-              <div className="z-10">
-                <h1 className="font-[space] text-[clamp(2rem,7vw,4rem)] font-extrabold">
-                  BMW
-                </h1>
-
-                <p className="font-[] max-w-md text-[clamp(1rem,2vw,1.2rem)]">
-                  BMW is a premium showcase website highlighting the brand’s
-                  design and performance — bold visuals, smooth interactions,
-                  and an experience that reflects automotive excellence.
-                </p>
-              </div>
-              <Image
-                className="physics-float-1 absolute top-0 right-0 h-auto w-[clamp(200px,30vh,1000px)] -rotate-6 rounded-2xl will-change-transform sm:top-[clamp(2rem,10vh,10rem)] sm:right-[clamp(2rem,10vh,10rem)] md:w-[clamp(200px,25vw,1000px)]"
-                src="/images/projects/bmw_car_hero.png"
-                alt="Campus Cravings"
-                width={500}
-                height={500}
+            <div className="group absolute right-0 bottom-0 flex h-22 w-22 cursor-pointer items-center justify-center overflow-hidden rounded-2xl bg-[#00CAFF]">
+              <ArrowUpRight
+                strokeWidth={1.2}
+                size={75}
+                className="absolute transition-all duration-400 ease-out group-hover:translate-x-16 group-hover:-translate-y-16"
               />
-              <Image
-                className="physics-float-2 absolute top-[clamp(2rem,15vh,8rem)] left-0 h-auto w-[clamp(100px,12vh,1000px)] rotate-6 rounded-2xl will-change-transform md:left-[clamp(2rem,10vh,5rem)] md:w-[clamp(100px,12vw,500px)]"
-                src="/images/projects/bmw_car_1.png"
-                alt="Campus Cravings"
-                height={500}
-                width={500}
-              />
-              <Image
-                className="physics-float-3 absolute right-[clamp(2rem,5vh,5rem)] bottom-[clamp(0.1rem,10vh,5rem)] h-auto w-[clamp(200px,30vh,1000px)] rotate-6 rounded-2xl will-change-transform md:w-[clamp(200px,25vw,1000px)]"
-                src="/images/projects/bmw_car_2.png"
-                alt="Campus Cravings"
-                height={500}
-                width={500}
+              <ArrowUpRight
+                strokeWidth={1.2}
+                size={75}
+                className="absolute -translate-x-16 translate-y-16 transition-all duration-400 ease-out group-hover:translate-x-0 group-hover:translate-y-0"
               />
             </div>
           </div>
         </div>
+        <div className="h-110 rounded-3xl bg-[#111111] p-6">
+          <div className="relative flex h-full w-full flex-col gap-3">
+            <div className="h-1/2 w-full overflow-hidden rounded-2xl bg-blue-500">
+              <Image
+                src="/images/projects/work_bridge_hero.png"
+                alt="Work Bridge"
+                className="fill h-full w-full"
+                width={500}
+                height={300}
+              />
+            </div>
+            <div className="flex h-1/2 w-full flex-col gap-2">
+              <div className="font-[mons] text-2xl text-white">
+                {data.projects[1].name}
+              </div>
+              <p className="font-[outfit] text-lg text-white">
+                {data.projects[1].description}
+              </p>
+            </div>
+
+            <div>
+              <div className="text-lg text-gray-400">
+                {data.projects[1].techStack}
+              </div>
+            </div>
+
+            <div className="group absolute right-0 bottom-0 flex h-22 w-22 cursor-pointer items-center justify-center overflow-hidden rounded-2xl bg-[#00CAFF]">
+              <ArrowUpRight
+                strokeWidth={1.2}
+                size={75}
+                className="absolute transition-all duration-400 ease-out group-hover:translate-x-16 group-hover:-translate-y-16"
+              />
+              <ArrowUpRight
+                strokeWidth={1.2}
+                size={75}
+                className="absolute -translate-x-16 translate-y-16 transition-all duration-400 ease-out group-hover:translate-x-0 group-hover:translate-y-0"
+              />
+            </div>
+          </div>
+        </div>{" "}
+        <div className="h-110 rounded-3xl bg-[#111111] p-6">
+          <div className="relative flex h-full w-full flex-col gap-3">
+            <div className="h-1/2 w-full overflow-hidden rounded-2xl bg-blue-500">
+              <Image
+                src="/images/projects/fight_club_hero.png"
+                alt="Fight Club"
+                className="fill h-full w-full"
+                width={500}
+                height={300}
+              />
+            </div>
+            <div className="flex h-1/2 w-full flex-col gap-2">
+              <div className="font-[mons] text-2xl text-white">
+                {data.projects[2].name}
+              </div>
+              <p className="font-[outfit] text-lg text-white">
+                {data.projects[2].description}
+              </p>
+            </div>
+
+            <div>
+              <div className="text-lg text-gray-400">
+                {data.projects[2].techStack}
+              </div>
+            </div>
+
+            <div className="group absolute right-0 bottom-0 flex h-22 w-22 cursor-pointer items-center justify-center overflow-hidden rounded-2xl bg-[#00CAFF]">
+              <ArrowUpRight
+                strokeWidth={1.2}
+                size={75}
+                className="absolute transition-all duration-400 ease-out group-hover:translate-x-16 group-hover:-translate-y-16"
+              />
+              <ArrowUpRight
+                strokeWidth={1.2}
+                size={75}
+                className="absolute -translate-x-16 translate-y-16 transition-all duration-400 ease-out group-hover:translate-x-0 group-hover:translate-y-0"
+              />
+            </div>
+          </div>
+        </div>{" "}
+        <div className="h-110 rounded-3xl bg-[#111111] p-6">
+          <div className="relative flex h-full w-full flex-col gap-3">
+            <div className="h-1/2 w-full overflow-hidden rounded-2xl bg-blue-500">
+              <Image
+                src="/images/projects/vertica_hero.png"
+                alt="Vertica"
+                className="fill h-full w-full"
+                width={500}
+                height={300}
+              />
+            </div>
+            <div className="flex h-1/2 w-full flex-col gap-2">
+              <div className="font-[mons] text-2xl text-white">
+                {data.projects[3].name}
+              </div>
+              <p className="font-[outfit] text-lg text-white">
+                {data.projects[3].description}
+              </p>
+            </div>
+
+            <div>
+              <div className="text-lg text-gray-400">
+                {data.projects[3].techStack}
+              </div>
+            </div>
+
+            <div className="group absolute right-0 bottom-0 flex h-22 w-22 cursor-pointer items-center justify-center overflow-hidden rounded-2xl bg-[#00CAFF]">
+              <ArrowUpRight
+                strokeWidth={1.2}
+                size={75}
+                className="absolute transition-all duration-400 ease-out group-hover:translate-x-16 group-hover:-translate-y-16"
+              />
+              <ArrowUpRight
+                strokeWidth={1.2}
+                size={75}
+                className="absolute -translate-x-16 translate-y-16 transition-all duration-400 ease-out group-hover:translate-x-0 group-hover:translate-y-0"
+              />
+            </div>
+          </div>
+        </div>{" "}
       </div>
-    </section>
+    </div>
   );
-}
+};
+
+export default Projects;

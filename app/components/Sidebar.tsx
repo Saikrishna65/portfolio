@@ -1,134 +1,140 @@
 "use client";
+import React, { useEffect, useRef } from "react";
+import gsap from "gsap";
+import { usePortfolio } from "../context/PortfolioContext";
 
-import React, { useRef, useEffect, useState } from "react";
-import { gsap } from "gsap";
-
-interface NavLink {
-  label: string;
-  href: string;
-}
-
-export default function Sidebar() {
-  const sidebarRef = useRef<HTMLDivElement | null>(null);
-  const buttonRef = useRef<HTMLButtonElement | null>(null);
-  const [open, setOpen] = useState(false);
-  const tlRef = useRef<gsap.core.Timeline | null>(null);
-  const linksRef = useRef<(HTMLAnchorElement | null)[]>([]);
-
-  useEffect(() => {
-    const tl = gsap.timeline({ paused: true });
-
-    tl.fromTo(
-      sidebarRef.current,
-      {
-        x: "100%",
-        borderTopLeftRadius: "50%",
-        borderBottomLeftRadius: "50%",
-      },
-      {
-        x: "0%",
-        borderTopLeftRadius: 0,
-        borderBottomLeftRadius: 0,
-        duration: 0.8,
-        ease: "power2.out",
-      },
-    );
-
-    tl.fromTo(
-      linksRef.current,
-      { x: 100, opacity: 0 },
-      {
-        x: 0,
-        opacity: 1,
-        stagger: 0.1,
-        duration: 0.5,
-        ease: "power2.out",
-      },
-      "-=0.4",
-    );
-
-    tlRef.current = tl;
-    return () => {
-      tl.kill();
-    };
-  }, []);
-
-  useEffect(() => {
-    document.body.style.overflow = open ? "hidden" : "";
-  }, [open]);
-
-  useEffect(() => {
-    if (!tlRef.current) return;
-    open ? tlRef.current.play() : tlRef.current.reverse();
-  }, [open]);
-
-  useEffect(() => {
-    const handleClickOutside = (e: MouseEvent) => {
-      if (
-        open &&
-        sidebarRef.current &&
-        !sidebarRef.current.contains(e.target as Node) &&
-        buttonRef.current &&
-        !buttonRef.current.contains(e.target as Node)
-      ) {
-        setOpen(false);
-      }
-    };
-
-    document.addEventListener("mousedown", handleClickOutside);
-    return () => document.removeEventListener("mousedown", handleClickOutside);
-  }, [open]);
-
-  const navLinks: NavLink[] = [
+const navLinks = {
+  en: [
     { label: "Home", href: "#home" },
     { label: "About", href: "#about" },
     { label: "Projects", href: "#projects" },
     { label: "Contact", href: "#contact" },
-  ];
+  ],
+  jp: [
+    { label: "ホーム", href: "#home" },
+    { label: "自己紹介", href: "#about" },
+    { label: "プロジェクト", href: "#projects" },
+    { label: "連絡先", href: "#contact" },
+  ],
+};
+
+const Sidebar = () => {
+  const { language } = usePortfolio();
+  const [open, setOpen] = React.useState(false);
+
+  const sidebarRef = useRef<HTMLDivElement>(null);
+  const fillsRef = useRef<HTMLDivElement[]>([]);
+  const linksRef = useRef<HTMLAnchorElement[]>([]);
+  const tl = useRef<gsap.core.Timeline | null>(null);
+
+  useEffect(() => {
+    tl.current = gsap.timeline({ paused: true });
+
+    // fade in sidebar
+    tl.current.fromTo(
+      sidebarRef.current,
+      { opacity: 0 },
+      { opacity: 1, duration: 0.3 },
+    );
+
+    // bars fill
+    tl.current.fromTo(
+      fillsRef.current,
+      { height: "0%" },
+      {
+        height: "100%",
+        duration: 1,
+        ease: "power2.inOut",
+        stagger: 0.03,
+      },
+      0,
+    );
+
+    // links fade in and up
+    tl.current.fromTo(
+      linksRef.current,
+      { opacity: 0, y: 5 },
+      {
+        opacity: 1,
+        y: 0,
+        duration: 0.3,
+        ease: "power2.out",
+        stagger: 0.1,
+      },
+    );
+  }, []);
+
+  useEffect(() => {
+    if (open) {
+      tl.current?.play();
+      const scrollY = window.scrollY;
+      document.body.style.position = "fixed";
+      document.body.style.top = `-${scrollY}px`;
+    } else {
+      tl.current?.reverse();
+      const scrollY = document.body.style.top;
+      document.body.style.position = "";
+      document.body.style.top = "";
+      window.scrollTo(0, parseInt(scrollY || "0") * -1);
+    }
+  }, [open]);
 
   return (
     <>
+      {/* BUTTON */}
       <button
-        ref={buttonRef}
         onClick={() => setOpen((prev) => !prev)}
-        className="fixed top-4 right-4 z-50 flex h-14 w-14 items-center justify-center rounded-full bg-[#00CAFF] focus:outline-none md:h-16 md:w-16"
+        className="z-50 flex h-12 w-12 cursor-pointer items-center justify-center rounded-full bg-[#00CAFF] transition-all duration-300 md:h-14 md:w-14 lg:h-16 lg:w-16 2xl:h-18 2xl:w-18"
       >
         <span
-          className={`absolute h-0.5 w-6 bg-black transition-transform duration-300 ${
-            open ? "rotate-45" : "-translate-y-1.5"
-          }`}
+          className={`absolute h-0.5 w-5 bg-black transition-all duration-300 md:w-7 ${open ? "rotate-45" : "sm:-translate-y-1.9 -translate-y-1.5"}`}
         />
         <span
-          className={`absolute h-0.5 w-6 bg-black transition-transform duration-300 ${
-            open ? "-rotate-45" : "translate-y-1.5"
-          }`}
+          className={`absolute h-0.5 w-5 bg-black transition-all duration-300 md:w-7 ${open ? "-rotate-45" : "sm:translate-y-1.9 translate-y-1.5"}`}
         />
       </button>
 
+      {open && (
+        <div className="fixed inset-0 z-30" onClick={() => setOpen(false)} />
+      )}
+
       <div
         ref={sidebarRef}
-        className="fixed inset-y-0 top-0 right-0 z-40 h-full w-full overflow-hidden bg-white md:w-[450px]"
-        style={{ transform: "translateX(100%)" }}
+        className={`absolute -top-4 -right-4 z-40 h-screen w-screen overflow-hidden opacity-0 sm:w-[110%] ${
+          open ? "pointer-events-auto" : "pointer-events-none"
+        }`}
       >
-        <div className="flex h-full w-full flex-col items-center justify-center overflow-auto px-6">
-          <ul className="space-y-6 text-center text-2xl font-semibold text-black">
-            {navLinks.map((item, idx) => (
-              <li key={idx}>
-                <a
-                  href={item.href}
-                  ref={(el) => {
-                    linksRef.current[idx] = el;
-                  }}
-                  className="transition hover:text-blue-600"
-                  onClick={() => setOpen(false)}
-                >
-                  {item.label}
-                </a>
-              </li>
-            ))}
-          </ul>
+        {[...Array(10)].map((_, i) => (
+          <div key={i} className="relative h-[10%] w-full">
+            <div className="h-full w-full" />
+            <div
+              ref={(el) => {
+                if (el) fillsRef.current[i] = el;
+              }}
+              className="absolute top-0 left-0 w-full bg-white"
+              style={{ height: "0%" }}
+            />
+          </div>
+        ))}
+
+        <div className="absolute inset-0 flex flex-col items-center justify-center gap-6 sm:gap-8">
+          {navLinks[language].map((link, i) => (
+            <a
+              key={link.label}
+              href={link.href}
+              ref={(el) => {
+                if (el) linksRef.current[i] = el;
+              }}
+              onClick={() => setOpen(false)}
+              className="nav-item font-[bebas] text-3xl tracking-wide text-black transition hover:tracking-wider hover:opacity-60 sm:text-2xl md:text-3xl lg:text-4xl 2xl:text-6xl"
+            >
+              {link.label}
+            </a>
+          ))}
         </div>
       </div>
     </>
   );
-}
+};
+
+export default Sidebar;
