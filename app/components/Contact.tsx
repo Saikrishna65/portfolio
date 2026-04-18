@@ -163,12 +163,12 @@ const Contact = () => {
             <div className="md:w-[50%]">
               <StageTiltReveal
                 direction="right"
-                text="Let’s build something great together."
+                text={data.mainHeading}
                 className="font-[impact] text-[clamp(2rem,6vh,8rem)] leading-[1.1] font-semibold [word-spacing:0.3rem] lg:text-[clamp(3rem,6vw,5rem)]"
               />
               <StageTiltReveal
                 direction="left"
-                text="Working hard, wherever Wi-Fi takes me."
+                text={data.description}
                 className="font-[space] text-[clamp(1rem,2vh,2rem)] font-semibold md:text-[clamp(0.5rem,3vw,1.5rem)]"
               />
             </div>
@@ -194,7 +194,7 @@ const Contact = () => {
               <div className="mt-4 flex gap-1">
                 <StageTiltReveal
                   direction="right"
-                  text="Local time"
+                  text={data.time}
                   className="font-[mons] text-[clamp(0.9rem,2vw,1rem)]"
                 />
 
@@ -213,23 +213,23 @@ const Contact = () => {
                 <a href="https://www.linkedin.com/in/saikrishnamangina/">
                   <StageTiltReveal
                     direction="left"
-                    text="LinkedIn"
+                    text={data.linkedin}
                     className="font-[mons] text-[clamp(0.9rem,2vw,1.5rem)]"
                   />
                 </a>
                 <a href="https://github.com/Saikrishna65">
                   <StageTiltReveal
                     direction="right"
-                    text="GitHub"
+                    text={data.github}
                     className="font-[mons] text-[clamp(0.9rem,2vw,1.5rem)]"
                   />
                 </a>
               </div>
               <div className="absolute bottom-1 flex items-center gap-2 sm:bottom-5">
-                <Copyright className="h-4 w-4 md:h-6 md:w-6" />
+                <Copyright className="h-4 w-4 -translate-y-0.5 md:h-6 md:w-6" />
                 <StageTiltReveal
                   direction="right"
-                  text="2025 Sai Krishna. All rights reserved… probably."
+                  text={data.copyright}
                   className="font-[mons] text-[clamp(0.5rem,3vw,1rem)]"
                   // noScroll
                 />

@@ -14,7 +14,8 @@ gsap.registerPlugin(ScrollTrigger);
 const About = () => {
   const sectionRef = useRef<HTMLDivElement>(null);
   const pinRef = useRef<HTMLDivElement>(null);
-  const { mode, language } = usePortfolio();
+  const pinEndRef = useRef<HTMLDivElement>(null);
+  const { mode, language, setMode } = usePortfolio();
   const data = content.about[mode][language];
 
   useEffect(() => {
@@ -23,9 +24,10 @@ const About = () => {
     const ctx = gsap.context(() => {
       ScrollTrigger.create({
         trigger: sectionRef.current,
+        endTrigger: pinEndRef.current,
 
-        start: "top 80%",
-        end: "bottom 92%",
+        start: "top 85%",
+        end: "bottom bottom",
 
         pin: pinRef.current,
         pinSpacing: false,
@@ -37,17 +39,23 @@ const About = () => {
 
   return (
     <div ref={sectionRef} className="relative w-full">
-      <div className="relative flex w-full justify-center">
+      <div className="relative z-10 flex w-full justify-center">
         <div ref={pinRef}>
-          <button className="w-fit cursor-pointer rounded-2xl bg-[#111111] px-6 py-3 font-[space] text-lg whitespace-nowrap text-white transition hover:scale-105 md:text-xl">
-            {mode === "professional"
-              ? "Want to see the fun version?"
-              : "Back to Professional"}
+          <button
+            onClick={() =>
+              setMode(mode === "professional" ? "fun" : "professional")
+            }
+            className="w-80 cursor-pointer rounded-2xl bg-[#00CAFF] px-6 py-3 font-[outfit] text-lg font-bold tracking-wide whitespace-nowrap transition hover:scale-105 md:w-90 md:text-xl"
+          >
+            {mode === "professional" ? data.toggleFun : data.toggleProfessional}
           </button>
         </div>
       </div>
 
-      <div className="mt-10 flex w-full flex-col items-center justify-center gap-3 sm:mt-6 md:gap-10">
+      <div
+        ref={pinEndRef}
+        className="mt-10 flex w-full flex-col items-center justify-center gap-3 sm:mt-6 md:gap-10"
+      >
         <div className="text-center font-[space] text-[clamp(1.8rem,4vw,6rem)] font-bold text-white">
           <ScrollAnimatedText
             text={data.heading}

@@ -2,6 +2,8 @@
 import React, { useEffect } from "react";
 import { usePortfolio } from "../context/PortfolioContext";
 import gsap from "gsap";
+import { Smile } from "lucide-react";
+import { div } from "motion/react-client";
 
 const modeLabels = {
   en: {
@@ -15,7 +17,7 @@ const modeLabels = {
 };
 
 export default function ToggleButtons() {
-  const emojiRef = React.useRef<HTMLSpanElement>(null);
+  const emojiRef = React.useRef<HTMLDivElement>(null);
   const { mode, setMode, language, setLanguage } = usePortfolio();
 
   const handleHover = () => {
@@ -49,7 +51,11 @@ export default function ToggleButtons() {
             ? modeLabels[language].fun
             : modeLabels[language].professional}
 
-          {mode === "professional" && <span ref={emojiRef}>😄</span>}
+          {mode === "professional" && (
+            <div ref={emojiRef}>
+              <Smile size={18} className="text-[#00CAFF]" />
+            </div>
+          )}
         </span>
       </button>
 

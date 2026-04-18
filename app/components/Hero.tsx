@@ -5,6 +5,7 @@ import ParallaxSection from "./ParallaxSection";
 import StageTiltReveal from "./StageTiltReveal";
 import { usePortfolio } from "../context/PortfolioContext";
 import { content } from "../data/content";
+import { Smile } from "lucide-react";
 
 const randomHTMLSnippets = [
   `<div class='intro-box'>
@@ -70,13 +71,13 @@ const formatHTML = (html: string) => {
 
 const Hero: React.FC = () => {
   const gridRef = useRef<HTMLDivElement>(null);
+  const iconSpotRef = useRef(null);
   const radius = 50;
   const fade = 100;
 
   const { mode, language } = usePortfolio();
 
   const data = content.hero[mode][language];
-  console.log(data.title, typeof data.title[0]);
 
   useEffect(() => {
     const grid = gridRef.current;
@@ -181,6 +182,7 @@ const Hero: React.FC = () => {
               delay={1}
             />
           </ParallaxSection>
+
           {/* </FadeInFromBottom> */}
         </div>
 

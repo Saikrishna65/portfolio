@@ -16,13 +16,13 @@ export const content = {
     },
     fun: {
       en: {
-        title: ["I  AM", "SAI  KRISHNA"],
+        title: ["HEY!", "I'M  KRISHNA"],
         subtitle: ["FULL STACK", "DEVELOPER"],
         description:
           "Pixel-perfect websites that don’t break even on your ex’s phone.",
       },
       jp: {
-        title: ["私は", "サイクリシュナ"],
+        title: ["やあ、", "クリシュナです"],
         subtitle: ["フルスタック", "開発者"],
         description:
           "元カレ・元カノのスマホでも崩れない、ピクセルパーフェクトなウェブサイト。",
@@ -39,6 +39,8 @@ export const content = {
         skills: "Next.js, React, TypeScript, Express",
         languagesHeading: "Languages",
         languages: "English, Telugu, Hindi, Japanese (JLPT N5 – Learning N3)",
+        toggleFun: "Want to see the fun version?",
+        toggleProfessional: "Back to Professional",
       },
       jp: {
         heading: "自己紹介",
@@ -49,6 +51,8 @@ export const content = {
         languagesHeading: "使用言語",
         languages:
           "英語、テルグ語、ヒンディー語、日本語（JLPT N5取得・現在N3学習中）",
+        toggleFun: "遊び心、出してみる？",
+        toggleProfessional: "真面目モードに戻る",
       },
     },
     fun: {
@@ -61,6 +65,8 @@ export const content = {
         languagesHeading: "Languages I survive in",
         languages:
           "English, Telugu, Hindi, Japanese (JLPT N5 — N3 in progress)",
+        toggleFun: "Want to see the fun version?",
+        toggleProfessional: "Back to Professional",
       },
       jp: {
         heading: "自己紹介",
@@ -71,6 +77,8 @@ export const content = {
         languagesHeading: "なんとか生活できる言語",
         languages:
           "英語、テルグ語、ヒンディー語、日本語（JLPT N5取得・現在N3に挑戦中）",
+        toggleFun: "遊び心、出してみる？",
+        toggleProfessional: "真面目モードに戻る",
       },
     },
   },
@@ -202,11 +210,23 @@ export const content = {
         heading1: "LET'",
         heading2: "S ",
         heading3: "CONNECT",
+        mainHeading: "Let's Build something great together.",
+        description: "Working hard, whereever Wi-Fi takes me.",
+        time: "Local Time",
+        linkedin: "LinkedIn",
+        github: "GitHub",
+        copyright: "2026 Sai Krishna. All rights reserved.",
       },
       jp: {
         heading1: "LET'",
         heading2: "S ",
         heading3: "CONNECT",
+        mainHeading: "最高のプロジェクトを、一緒に作り上げましょう。",
+        description: "Wi-Fiがある場所なら、どこでも全力で。",
+        time: "現地時間",
+        linkedin: "LinkedIn",
+        github: "GitHub",
+        copyright: "2026 Sai Krishna. All rights reserved.",
       },
     },
     fun: {
@@ -214,11 +234,23 @@ export const content = {
         heading1: "LET'",
         heading2: "S ",
         heading3: "CONNECT",
+        mainHeading: "Let’s ship it… and fix it later.",
+        description: "Working hard, until the Wi-Fi drops and so do I.",
+        time: "Local Time",
+        linkedin: "LinkedIn",
+        github: "GitHub",
+        copyright: "2026 Sai Krishna. All rights reserved… probably.",
       },
       jp: {
         heading1: "LET'",
         heading2: "S ",
         heading3: "CONNECT",
+        mainHeading: "とりあえずデプロイ。修正は後で。",
+        description: "Wi-Fiが切れるまで働く。切れたら僕も倒れる。",
+        time: "現地時間",
+        linkedin: "LinkedIn",
+        github: "GitHub",
+        copyright: "2026 Sai Krishna. All rights reserved… たぶんね。",
       },
     },
   },
