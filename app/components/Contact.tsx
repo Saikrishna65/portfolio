@@ -145,7 +145,7 @@ const Contact = () => {
 
         <div
           ref={centerRef}
-          className="mask-text mr-10 origin-center font-[bebas] text-[clamp(4rem,15vw,15rem)] text-white will-change-transform"
+          className="mask-text z-60 mr-10 origin-center font-[bebas] text-[clamp(4rem,15vw,15rem)] text-white will-change-transform"
         >
           {data.heading2}
         </div>
@@ -158,7 +158,7 @@ const Contact = () => {
         </div>
       </div>
       {secondLayer && (
-        <div className="absolute top-0 z-10 h-full w-full bg-white px-5 py-[clamp(1rem,3vw,3rem)] md:px-10">
+        <div className="absolute top-0 z-70 h-full w-full bg-white px-5 py-[clamp(1rem,3vw,3rem)] md:px-10">
           <div className="h-[50%] w-full md:flex">
             <div className="md:w-[50%]">
               <StageTiltReveal
