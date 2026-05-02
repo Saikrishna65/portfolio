@@ -5,6 +5,7 @@ import Image from "next/image";
 import React from "react";
 import { content } from "../data/content";
 import { usePortfolio } from "../context/PortfolioContext";
+import Link from "next/link";
 
 const Projects = () => {
   const { mode, language } = usePortfolio();
@@ -41,18 +42,20 @@ const Projects = () => {
               </div>
             </div>
 
-            <div className="group absolute right-0 bottom-0 flex h-22 w-22 cursor-pointer items-center justify-center overflow-hidden rounded-2xl bg-[#00CAFF]">
-              <ArrowUpRight
-                strokeWidth={1.2}
-                size={75}
-                className="absolute transition-all duration-400 ease-out group-hover:translate-x-16 group-hover:-translate-y-16"
-              />
-              <ArrowUpRight
-                strokeWidth={1.2}
-                size={75}
-                className="absolute -translate-x-16 translate-y-16 transition-all duration-400 ease-out group-hover:translate-x-0 group-hover:translate-y-0"
-              />
-            </div>
+            <Link href="https://github.com/Saikrishna65/college-food-delivery">
+              <div className="group absolute right-0 bottom-0 flex h-22 w-22 cursor-pointer items-center justify-center overflow-hidden rounded-2xl bg-[#00CAFF]">
+                <ArrowUpRight
+                  strokeWidth={1.2}
+                  size={75}
+                  className="absolute transition-all duration-400 ease-out group-hover:translate-x-16 group-hover:-translate-y-16"
+                />
+                <ArrowUpRight
+                  strokeWidth={1.2}
+                  size={75}
+                  className="absolute -translate-x-16 translate-y-16 transition-all duration-400 ease-out group-hover:translate-x-0 group-hover:translate-y-0"
+                />
+              </div>
+            </Link>
           </div>
         </div>
         <div className="h-110 rounded-3xl bg-[#111111] p-6">
@@ -81,18 +84,20 @@ const Projects = () => {
               </div>
             </div>
 
-            <div className="group absolute right-0 bottom-0 flex h-22 w-22 cursor-pointer items-center justify-center overflow-hidden rounded-2xl bg-[#00CAFF]">
-              <ArrowUpRight
-                strokeWidth={1.2}
-                size={75}
-                className="absolute transition-all duration-400 ease-out group-hover:translate-x-16 group-hover:-translate-y-16"
-              />
-              <ArrowUpRight
-                strokeWidth={1.2}
-                size={75}
-                className="absolute -translate-x-16 translate-y-16 transition-all duration-400 ease-out group-hover:translate-x-0 group-hover:translate-y-0"
-              />
-            </div>
+            <Link href="https://github.com/Saikrishna65/WorkBridge">
+              <div className="group absolute right-0 bottom-0 flex h-22 w-22 cursor-pointer items-center justify-center overflow-hidden rounded-2xl bg-[#00CAFF]">
+                <ArrowUpRight
+                  strokeWidth={1.2}
+                  size={75}
+                  className="absolute transition-all duration-400 ease-out group-hover:translate-x-16 group-hover:-translate-y-16"
+                />
+                <ArrowUpRight
+                  strokeWidth={1.2}
+                  size={75}
+                  className="absolute -translate-x-16 translate-y-16 transition-all duration-400 ease-out group-hover:translate-x-0 group-hover:translate-y-0"
+                />
+              </div>
+            </Link>
           </div>
         </div>{" "}
         <div className="h-110 rounded-3xl bg-[#111111] p-6">
@@ -120,19 +125,20 @@ const Projects = () => {
                 {data.projects[2].techStack}
               </div>
             </div>
-
-            <div className="group absolute right-0 bottom-0 flex h-22 w-22 cursor-pointer items-center justify-center overflow-hidden rounded-2xl bg-[#00CAFF]">
-              <ArrowUpRight
-                strokeWidth={1.2}
-                size={75}
-                className="absolute transition-all duration-400 ease-out group-hover:translate-x-16 group-hover:-translate-y-16"
-              />
-              <ArrowUpRight
-                strokeWidth={1.2}
-                size={75}
-                className="absolute -translate-x-16 translate-y-16 transition-all duration-400 ease-out group-hover:translate-x-0 group-hover:translate-y-0"
-              />
-            </div>
+            <Link href="https://github.com/Saikrishna65/fight_club">
+              <div className="group absolute right-0 bottom-0 flex h-22 w-22 cursor-pointer items-center justify-center overflow-hidden rounded-2xl bg-[#00CAFF]">
+                <ArrowUpRight
+                  strokeWidth={1.2}
+                  size={75}
+                  className="absolute transition-all duration-400 ease-out group-hover:translate-x-16 group-hover:-translate-y-16"
+                />
+                <ArrowUpRight
+                  strokeWidth={1.2}
+                  size={75}
+                  className="absolute -translate-x-16 translate-y-16 transition-all duration-400 ease-out group-hover:translate-x-0 group-hover:translate-y-0"
+                />
+              </div>
+            </Link>
           </div>
         </div>{" "}
         <div className="h-110 rounded-3xl bg-[#111111] p-6">
@@ -160,19 +166,20 @@ const Projects = () => {
                 {data.projects[3].techStack}
               </div>
             </div>
-
-            <div className="group absolute right-0 bottom-0 flex h-22 w-22 cursor-pointer items-center justify-center overflow-hidden rounded-2xl bg-[#00CAFF]">
-              <ArrowUpRight
-                strokeWidth={1.2}
-                size={75}
-                className="absolute transition-all duration-400 ease-out group-hover:translate-x-16 group-hover:-translate-y-16"
-              />
-              <ArrowUpRight
-                strokeWidth={1.2}
-                size={75}
-                className="absolute -translate-x-16 translate-y-16 transition-all duration-400 ease-out group-hover:translate-x-0 group-hover:translate-y-0"
-              />
-            </div>
+            <Link href="https://github.com/Saikrishna65/skyscraper">
+              <div className="group absolute right-0 bottom-0 flex h-22 w-22 cursor-pointer items-center justify-center overflow-hidden rounded-2xl bg-[#00CAFF]">
+                <ArrowUpRight
+                  strokeWidth={1.2}
+                  size={75}
+                  className="absolute transition-all duration-400 ease-out group-hover:translate-x-16 group-hover:-translate-y-16"
+                />
+                <ArrowUpRight
+                  strokeWidth={1.2}
+                  size={75}
+                  className="absolute -translate-x-16 translate-y-16 transition-all duration-400 ease-out group-hover:translate-x-0 group-hover:translate-y-0"
+                />
+              </div>
+            </Link>
           </div>
         </div>{" "}
       </div>

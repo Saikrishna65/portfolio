@@ -11,26 +11,26 @@ body::-webkit-scrollbar {
   display: none;
 }
 
-@font-face {
+/* @font-face {
   font-family: "mons";
-  src: url("/font/Mons.ttf") format("truetype");
+  src: url("/font/Mons.woff2") format("truetype");
 }
 @font-face {
   font-family: "impact";
-  src: url("/font/Impact.ttf") format("truetype");
+  src: url("/font/Impact.woff2") format("truetype");
 }
 @font-face {
   font-family: "bebas";
-  src: url("/font/Bebas.ttf") format("truetype");
+  src: url("/font/Bebas.woff2") format("truetype");
 }
 @font-face {
   font-family: "space";
-  src: url("/font/space.ttf") format("truetype");
+  src: url("/font/space.woff2") format("truetype");
 }
 @font-face {
   font-family: "outfit";
-  src: url("/font/outfit.ttf") format("truetype");
-}
+  src: url("/font/outfit.woff2") format("truetype");
+} */
 
 @keyframes marquee {
   from {

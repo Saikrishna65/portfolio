@@ -37,6 +37,10 @@ const About = () => {
     return () => ctx.revert();
   }, []);
 
+  useEffect(() => {
+    ScrollTrigger.refresh();
+  }, [mode, language]);
+
   return (
     <div ref={sectionRef} className="relative w-full">
       <div className="relative z-10 flex w-full justify-center">
